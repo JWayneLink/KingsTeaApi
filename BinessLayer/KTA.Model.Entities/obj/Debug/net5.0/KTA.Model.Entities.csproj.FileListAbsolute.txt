@@ -1,0 +1,12 @@
+C:\Users\iec090297\source\repos\KingsTea\BinessLayer\KTA.Model.Entities\bin\Debug\net5.0\KTA.Model.Entities.deps.json
+C:\Users\iec090297\source\repos\KingsTea\BinessLayer\KTA.Model.Entities\bin\Debug\net5.0\KTA.Model.Entities.dll
+C:\Users\iec090297\source\repos\KingsTea\BinessLayer\KTA.Model.Entities\bin\Debug\net5.0\ref\KTA.Model.Entities.dll
+C:\Users\iec090297\source\repos\KingsTea\BinessLayer\KTA.Model.Entities\bin\Debug\net5.0\KTA.Model.Entities.pdb
+C:\Users\iec090297\source\repos\KingsTea\BinessLayer\KTA.Model.Entities\obj\Debug\net5.0\KTA.Model.Entities.csproj.AssemblyReference.cache
+C:\Users\iec090297\source\repos\KingsTea\BinessLayer\KTA.Model.Entities\obj\Debug\net5.0\KTA.Model.Entities.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\iec090297\source\repos\KingsTea\BinessLayer\KTA.Model.Entities\obj\Debug\net5.0\KTA.Model.Entities.AssemblyInfoInputs.cache
+C:\Users\iec090297\source\repos\KingsTea\BinessLayer\KTA.Model.Entities\obj\Debug\net5.0\KTA.Model.Entities.AssemblyInfo.cs
+C:\Users\iec090297\source\repos\KingsTea\BinessLayer\KTA.Model.Entities\obj\Debug\net5.0\KTA.Model.Entities.csproj.CoreCompileInputs.cache
+C:\Users\iec090297\source\repos\KingsTea\BinessLayer\KTA.Model.Entities\obj\Debug\net5.0\KTA.Model.Entities.dll
+C:\Users\iec090297\source\repos\KingsTea\BinessLayer\KTA.Model.Entities\obj\Debug\net5.0\ref\KTA.Model.Entities.dll
+C:\Users\iec090297\source\repos\KingsTea\BinessLayer\KTA.Model.Entities\obj\Debug\net5.0\KTA.Model.Entities.pdb

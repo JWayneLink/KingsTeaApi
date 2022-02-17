@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\KTA.Data.Entity\KTA.Data.Entity.csproj" />
+    <ProjectReference Include="..\KTA.Data.Service\KTA.Data.Service.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,192 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Users\\iec090297\\source\\repos\\KingsTea\\DataAccessLayer\\KTA.Data.Entity\\KTA.Data.Entity.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\iec090297\\source\\repos\\KingsTea\\BinessLayer\\KTA.Model.Exception\\KTA.Model.ExceptionHelper.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\iec090297\\source\\repos\\KingsTea\\BinessLayer\\KTA.Model.Exception\\KTA.Model.ExceptionHelper.csproj",
+        "projectName": "KTA.Model.ExceptionHelper",
+        "projectPath": "C:\\Users\\iec090297\\source\\repos\\KingsTea\\BinessLayer\\KTA.Model.Exception\\KTA.Model.ExceptionHelper.csproj",
+        "packagesPath": "C:\\Users\\iec090297\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\iec090297\\source\\repos\\KingsTea\\BinessLayer\\KTA.Model.Exception\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\iec090297\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "http://taotest:123/FISNuGetServer2/nuget": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.100\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\iec090297\\source\\repos\\KingsTea\\DataAccessLayer\\KTA.Data.Entity\\KTA.Data.Entity.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\iec090297\\source\\repos\\KingsTea\\DataAccessLayer\\KTA.Data.Entity\\KTA.Data.Entity.csproj",
+        "projectName": "KTA.Data.Entity",
+        "projectPath": "C:\\Users\\iec090297\\source\\repos\\KingsTea\\DataAccessLayer\\KTA.Data.Entity\\KTA.Data.Entity.csproj",
+        "packagesPath": "C:\\Users\\iec090297\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\iec090297\\source\\repos\\KingsTea\\DataAccessLayer\\KTA.Data.Entity\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\iec090297\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "http://taotest:123/FISNuGetServer2/nuget": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {
+              "C:\\Users\\iec090297\\source\\repos\\KingsTea\\BinessLayer\\KTA.Model.Exception\\KTA.Model.ExceptionHelper.csproj": {
+                "projectPath": "C:\\Users\\iec090297\\source\\repos\\KingsTea\\BinessLayer\\KTA.Model.Exception\\KTA.Model.ExceptionHelper.csproj"
+              },
+              "C:\\Users\\iec090297\\source\\repos\\KingsTea\\DataAccessLayer\\KTA.Data.Schema\\KTA.Data.Schema.csproj": {
+                "projectPath": "C:\\Users\\iec090297\\source\\repos\\KingsTea\\DataAccessLayer\\KTA.Data.Schema\\KTA.Data.Schema.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "dependencies": {
+            "EnterpriseLibrary.Validation": {
+              "target": "Package",
+              "version": "[6.0.1304, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.100\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\iec090297\\source\\repos\\KingsTea\\DataAccessLayer\\KTA.Data.Schema\\KTA.Data.Schema.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\iec090297\\source\\repos\\KingsTea\\DataAccessLayer\\KTA.Data.Schema\\KTA.Data.Schema.csproj",
+        "projectName": "KTA.Data.Schema",
+        "projectPath": "C:\\Users\\iec090297\\source\\repos\\KingsTea\\DataAccessLayer\\KTA.Data.Schema\\KTA.Data.Schema.csproj",
+        "packagesPath": "C:\\Users\\iec090297\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\iec090297\\source\\repos\\KingsTea\\DataAccessLayer\\KTA.Data.Schema\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\iec090297\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "http://taotest:123/FISNuGetServer2/nuget": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.100\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\DataAccessLayer\KTA.Data.Entity\KTA.Data.Entity.csproj" />
+    <ProjectReference Include="..\KTA.Model.Entities\KTA.Model.Entities.csproj" />
+  </ItemGroup>
+
+</Project>

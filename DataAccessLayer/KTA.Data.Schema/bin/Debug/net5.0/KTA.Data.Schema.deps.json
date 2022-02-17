@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v5.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v5.0": {
+      "KTA.Data.Schema/1.0.0": {
+        "runtime": {
+          "KTA.Data.Schema.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "KTA.Data.Schema/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

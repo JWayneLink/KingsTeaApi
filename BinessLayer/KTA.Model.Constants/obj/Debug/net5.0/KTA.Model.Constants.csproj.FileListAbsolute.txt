@@ -1,0 +1,12 @@
+C:\Users\iec090297\source\repos\KingsTea\BinessLayer\KTA.Model.Constants\bin\Debug\net5.0\KTA.Model.Constants.deps.json
+C:\Users\iec090297\source\repos\KingsTea\BinessLayer\KTA.Model.Constants\bin\Debug\net5.0\KTA.Model.Constants.dll
+C:\Users\iec090297\source\repos\KingsTea\BinessLayer\KTA.Model.Constants\bin\Debug\net5.0\ref\KTA.Model.Constants.dll
+C:\Users\iec090297\source\repos\KingsTea\BinessLayer\KTA.Model.Constants\bin\Debug\net5.0\KTA.Model.Constants.pdb
+C:\Users\iec090297\source\repos\KingsTea\BinessLayer\KTA.Model.Constants\obj\Debug\net5.0\KTA.Model.Constants.csproj.AssemblyReference.cache
+C:\Users\iec090297\source\repos\KingsTea\BinessLayer\KTA.Model.Constants\obj\Debug\net5.0\KTA.Model.Constants.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\iec090297\source\repos\KingsTea\BinessLayer\KTA.Model.Constants\obj\Debug\net5.0\KTA.Model.Constants.AssemblyInfoInputs.cache
+C:\Users\iec090297\source\repos\KingsTea\BinessLayer\KTA.Model.Constants\obj\Debug\net5.0\KTA.Model.Constants.AssemblyInfo.cs
+C:\Users\iec090297\source\repos\KingsTea\BinessLayer\KTA.Model.Constants\obj\Debug\net5.0\KTA.Model.Constants.csproj.CoreCompileInputs.cache
+C:\Users\iec090297\source\repos\KingsTea\BinessLayer\KTA.Model.Constants\obj\Debug\net5.0\KTA.Model.Constants.dll
+C:\Users\iec090297\source\repos\KingsTea\BinessLayer\KTA.Model.Constants\obj\Debug\net5.0\ref\KTA.Model.Constants.dll
+C:\Users\iec090297\source\repos\KingsTea\BinessLayer\KTA.Model.Constants\obj\Debug\net5.0\KTA.Model.Constants.pdb

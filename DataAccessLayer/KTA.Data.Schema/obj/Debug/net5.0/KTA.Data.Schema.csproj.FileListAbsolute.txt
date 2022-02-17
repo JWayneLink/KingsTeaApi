@@ -1,0 +1,12 @@
+C:\Users\iec090297\source\repos\KingsTea\DataAccessLayer\KTA.Data.Schema\bin\Debug\net5.0\KTA.Data.Schema.deps.json
+C:\Users\iec090297\source\repos\KingsTea\DataAccessLayer\KTA.Data.Schema\bin\Debug\net5.0\KTA.Data.Schema.dll
+C:\Users\iec090297\source\repos\KingsTea\DataAccessLayer\KTA.Data.Schema\bin\Debug\net5.0\ref\KTA.Data.Schema.dll
+C:\Users\iec090297\source\repos\KingsTea\DataAccessLayer\KTA.Data.Schema\bin\Debug\net5.0\KTA.Data.Schema.pdb
+C:\Users\iec090297\source\repos\KingsTea\DataAccessLayer\KTA.Data.Schema\obj\Debug\net5.0\KTA.Data.Schema.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\iec090297\source\repos\KingsTea\DataAccessLayer\KTA.Data.Schema\obj\Debug\net5.0\KTA.Data.Schema.AssemblyInfoInputs.cache
+C:\Users\iec090297\source\repos\KingsTea\DataAccessLayer\KTA.Data.Schema\obj\Debug\net5.0\KTA.Data.Schema.AssemblyInfo.cs
+C:\Users\iec090297\source\repos\KingsTea\DataAccessLayer\KTA.Data.Schema\obj\Debug\net5.0\KTA.Data.Schema.csproj.CoreCompileInputs.cache
+C:\Users\iec090297\source\repos\KingsTea\DataAccessLayer\KTA.Data.Schema\obj\Debug\net5.0\KTA.Data.Schema.dll
+C:\Users\iec090297\source\repos\KingsTea\DataAccessLayer\KTA.Data.Schema\obj\Debug\net5.0\ref\KTA.Data.Schema.dll
+C:\Users\iec090297\source\repos\KingsTea\DataAccessLayer\KTA.Data.Schema\obj\Debug\net5.0\KTA.Data.Schema.pdb
+C:\Users\iec090297\source\repos\KingsTea\DataAccessLayer\KTA.Data.Schema\obj\Debug\net5.0\KTA.Data.Schema.csproj.AssemblyReference.cache
