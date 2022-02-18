@@ -48,6 +48,12 @@ namespace KingsTeaApp
             // Configuring EF Core
             services.AddDbContextFactory<KTADbContext>(kta => kta.UseSqlServer(Configuration["DefaultConnection"]));
             //services.AddSingleton<IAccountRepository, AccountRepository>();
+
+            //services.Configure<ApiBehaviorOptions>(options =>
+            //{
+            //    options.SuppressModelStateInvalidFilter = true;
+            //});
+            
         }
 
         public void ConfigureContainer(ContainerBuilder builder)

@@ -80,6 +80,9 @@ C:\Users\iec090297\source\repos\KingsTea\KingsTeaApp\bin\Debug\net5.0\KTA.Data.R
 C:\Users\iec090297\source\repos\KingsTea\KingsTeaApp\bin\Debug\net5.0\KTA.Data.Schema.pdb
 C:\Users\iec090297\source\repos\KingsTea\KingsTeaApp\bin\Debug\net5.0\KTA.Data.Service.pdb
 C:\Users\iec090297\source\repos\KingsTea\KingsTeaApp\bin\Debug\net5.0\KTA.Model.ExceptionHelper.pdb
-C:\Users\iec090297\source\repos\KingsTea\KingsTeaApp\obj\Debug\net5.0\KingsTeaApp.csproj.CopyComplete
 C:\Users\iec090297\source\repos\KingsTea\KingsTeaApp\bin\Debug\net5.0\KTA.Model.Constants.dll
 C:\Users\iec090297\source\repos\KingsTea\KingsTeaApp\bin\Debug\net5.0\KTA.Model.Constants.pdb
+C:\Users\iec090297\source\repos\KingsTea\KingsTeaApp\bin\Debug\net5.0\System.Net.Http.Formatting.dll
+C:\Users\iec090297\source\repos\KingsTea\KingsTeaApp\bin\Debug\net5.0\System.Web.Http.dll
+C:\Users\iec090297\source\repos\KingsTea\KingsTeaApp\bin\Debug\net5.0\Newtonsoft.Json.Bson.dll
+C:\Users\iec090297\source\repos\KingsTea\KingsTeaApp\obj\Debug\net5.0\KingsTeaApp.csproj.CopyComplete

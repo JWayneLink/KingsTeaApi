@@ -9,5 +9,6 @@ namespace KTA.Data.Service
 {
     public interface IAccountRepository: IRepositoryBase<AccountEntity>
     {
+        Task<AccountEntity> GetSingleItemAsync(string account);
     }
 }

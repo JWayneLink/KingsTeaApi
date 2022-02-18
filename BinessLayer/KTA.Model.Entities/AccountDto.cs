@@ -11,11 +11,8 @@ namespace KTA.Model.Entities
     {
         [Required]
         public string Account { get; set; }
-        [Required]
         public string Name { get; set; }
-        [Required]
         public string Pwd { get; set; }
-        [Required]
         public string Email { get; set; }
         public string Phone { get; set; }
     }

@@ -18,3 +18,4 @@ C:\Users\iec090297\source\repos\KingsTea\BinessLayer\KTA.Model.Interface\bin\Deb
 C:\Users\iec090297\source\repos\KingsTea\BinessLayer\KTA.Model.Interface\bin\Debug\net5.0\KTA.Model.ExceptionHelper.pdb
 C:\Users\iec090297\source\repos\KingsTea\BinessLayer\KTA.Model.Interface\bin\Debug\net5.0\KTA.Model.Entities.dll
 C:\Users\iec090297\source\repos\KingsTea\BinessLayer\KTA.Model.Interface\bin\Debug\net5.0\KTA.Model.Entities.pdb
+C:\Users\iec090297\source\repos\KingsTea\BinessLayer\KTA.Model.Interface\obj\Debug\net5.0\KTA.Model.Interface.csproj.CopyComplete

@@ -22,6 +22,6 @@ C:\Users\iec090297\source\repos\KingsTea\BinessLayer\KTA.Model.Services\bin\Debu
 C:\Users\iec090297\source\repos\KingsTea\BinessLayer\KTA.Model.Services\bin\Debug\net5.0\KTA.Model.ExceptionHelper.pdb
 C:\Users\iec090297\source\repos\KingsTea\BinessLayer\KTA.Model.Services\bin\Debug\net5.0\KTA.Model.Entities.dll
 C:\Users\iec090297\source\repos\KingsTea\BinessLayer\KTA.Model.Services\bin\Debug\net5.0\KTA.Model.Entities.pdb
-C:\Users\iec090297\source\repos\KingsTea\BinessLayer\KTA.Model.Services\obj\Debug\net5.0\KTA.Model.Services.csproj.CopyComplete
 C:\Users\iec090297\source\repos\KingsTea\BinessLayer\KTA.Model.Services\bin\Debug\net5.0\KTA.Model.Constants.dll
 C:\Users\iec090297\source\repos\KingsTea\BinessLayer\KTA.Model.Services\bin\Debug\net5.0\KTA.Model.Constants.pdb
+C:\Users\iec090297\source\repos\KingsTea\BinessLayer\KTA.Model.Services\obj\Debug\net5.0\KTA.Model.Services.csproj.CopyComplete

@@ -15,5 +15,7 @@ namespace KTA.Data.Repository
         { }
 
         public DbSet<AccountEntity> Account { get; set; }
+        public DbSet<ProductEntity> Product { get; set; }
+
     }
 }

@@ -16,41 +16,124 @@ namespace KTA.Model.Services
         private readonly IDateTimeService _dateTimeService;
         private readonly IAccountRepository _accountRepository;
 
-
         public AccountService(IAccountRepository accountRepository, IDateTimeService dateTimeService)
         {
             _accountRepository = accountRepository;
             _dateTimeService = dateTimeService;
         }
 
-        public async Task<string> AddAsync(AccountDto dtoItem)
+        public async Task<ServiceResultModel<string>> AddAsync(AccountDto dtoItem)
         {
+            ServiceResultModel<string> serviceResult = new ServiceResultModel<string>();
             try
             {
                 var addItem = this.ConvertAccountEntity(dtoItem);
-                AccountEntity existAcc = await this._accountRepository.GetSingleItemAsync(addItem);
-                if (existAcc != null)
-                {                    
-                    return AccountConstant.AccountExisted;
+                AccountEntity existItem = await this._accountRepository.GetSingleItemAsync(addItem);
+                if (existItem != null)
+                {
+                    serviceResult.IsSuccess = true;
+                    serviceResult.Message = AccountConstant.AccountExisted;
+                    return serviceResult;
                 }
-
+                
                 await this._accountRepository.AddAsync(addItem);
-                return AccountConstant.AccountInsertOK;
+                serviceResult.IsSuccess = true;
+                serviceResult.Message = AccountConstant.AccountInsertOK;
+                return serviceResult;
             }
             catch (Exception ex)
             {
-                return ex.Message + ex.StackTrace;
+                serviceResult.IsSuccess= false;
+                serviceResult.Message = ex.Message + ex.StackTrace;
+                return serviceResult;
+            }
+        }        
+
+        public async Task<ServiceResultModel<string>> DeleteAsync(AccountDto dtoItem)
+        {
+            ServiceResultModel<string> serviceResult = new ServiceResultModel<string>();
+            try
+            {
+                var deleteItem = this.ConvertAccountEntity(dtoItem);
+                AccountEntity existItem = await this._accountRepository.GetSingleItemAsync(deleteItem);
+                if (existItem == null)
+                {
+                    serviceResult.IsSuccess = true;
+                    serviceResult.Message = $"{deleteItem.Account} {AccountConstant.AccountDeleteDataNotFound}";
+                    return serviceResult;
+                }
+                
+                await this._accountRepository.DeleteAsync(existItem);
+                serviceResult.IsSuccess = true;
+                serviceResult.Message = $"{deleteItem.Account} {AccountConstant.AccountDeleteOK}";
+                return serviceResult;
+            }
+            catch (Exception ex)
+            {
+                serviceResult.IsSuccess = false;               
+                serviceResult.Message = ex.Message + ex.StackTrace;
+                return serviceResult;
             }
         }
 
-        public Task<string> DeleteAsync(AccountDto dtoItem)
+        public async Task<ServiceResultModel<string>> UpdateAsync(AccountDto dtoItem)
         {
-            throw new NotImplementedException();
+            ServiceResultModel<string> serviceResult = new ServiceResultModel<string>();
+            try
+            {
+                var updateItem = this.ConvertAccountEntity(dtoItem);
+                AccountEntity existItem = await this._accountRepository.GetSingleItemAsync(updateItem);
+                if (existItem == null)
+                {
+                    serviceResult.IsSuccess = true;
+                    serviceResult.Message = $"{dtoItem.Account} {AccountConstant.AccountUpdateDataNotFound}";
+                    return serviceResult;                    
+                }
+
+                existItem.Name = dtoItem.Name;
+                existItem.Pwd = dtoItem.Pwd;
+                existItem.Email = dtoItem.Email;
+                existItem.Phone = dtoItem.Phone;
+                existItem.Udt = this._dateTimeService.GetCurrentTime();
+                await this._accountRepository.UpdateAsync(existItem);
+                serviceResult.IsSuccess = true;
+                serviceResult.Message = $"{updateItem.Account} {AccountConstant.AccountUpdateOK}";
+                return serviceResult;                
+            }
+            catch (Exception ex)
+            {
+                serviceResult.IsSuccess = false;
+                serviceResult.Message = ex.Message + ex.StackTrace;
+                return serviceResult;                
+            }
         }
 
-        public Task<string> UpdateAsync(AccountDto dtoItem)
+        public async Task<ServiceResultModel<AccountEntity>> GetSingleItemAsync(string account)
         {
-            throw new NotImplementedException();
+            ServiceResultModel<AccountEntity> serviceResult = new ServiceResultModel<AccountEntity>();
+            try
+            {                
+                AccountEntity existItem = await this._accountRepository.GetSingleItemAsync(account);
+                if (existItem == null)
+                {
+                    serviceResult.IsSuccess = true;
+                    serviceResult.Message = $"{account} {AccountConstant.AccountQueryDataNotFound}";
+                    serviceResult.Data = new List<AccountEntity>();
+                    return serviceResult;
+                }
+
+                serviceResult.IsSuccess = true;
+                serviceResult.Message = AccountConstant.AccountQueryOK;
+                serviceResult.Data = new List<AccountEntity>() { existItem };
+                return serviceResult;
+            }
+            catch (Exception ex)
+            {
+                serviceResult.IsSuccess = false;
+                serviceResult.Message = $"{ex.Message} {ex.StackTrace}";
+                serviceResult.Data = new List<AccountEntity>();
+                return serviceResult;
+            }
         }
 
         private AccountEntity ConvertAccountEntity(AccountDto dtoItem)

@@ -648,6 +648,10 @@
               "target": "Package",
               "version": "[7.2.0, )"
             },
+            "Microsoft.AspNet.WebApi.Core": {
+              "target": "Package",
+              "version": "[5.2.7, )"
+            },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
               "version": "[5.0.1, )"

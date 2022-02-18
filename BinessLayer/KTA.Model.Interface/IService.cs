@@ -1,4 +1,5 @@
-﻿using System;
+﻿using KTA.Model.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,5 @@ namespace KTA.Model.Interface
 {
     public interface IService
     {
-
     }
 }

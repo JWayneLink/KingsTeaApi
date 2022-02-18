@@ -14,3 +14,4 @@ C:\Users\iec090297\source\repos\KingsTea\DataAccessLayer\KTA.Data.Entity\bin\Deb
 C:\Users\iec090297\source\repos\KingsTea\DataAccessLayer\KTA.Data.Entity\bin\Debug\net5.0\KTA.Model.ExceptionHelper.pdb
 C:\Users\iec090297\source\repos\KingsTea\DataAccessLayer\KTA.Data.Entity\bin\Debug\net5.0\KTA.Data.Schema.dll
 C:\Users\iec090297\source\repos\KingsTea\DataAccessLayer\KTA.Data.Entity\bin\Debug\net5.0\KTA.Data.Schema.pdb
+C:\Users\iec090297\source\repos\KingsTea\DataAccessLayer\KTA.Data.Entity\obj\Debug\net5.0\KTA.Data.Entity.csproj.CopyComplete

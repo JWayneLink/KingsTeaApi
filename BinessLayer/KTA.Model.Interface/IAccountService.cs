@@ -10,9 +10,9 @@ namespace KTA.Model.Interface
 {
     public interface IAccountService : IService
     {
-        Task<string> AddAsync(AccountDto dtoItem);
-        Task<string> UpdateAsync(AccountDto dtoItem);
-        Task<string> DeleteAsync(AccountDto dtoItem);
-        
+        Task<ServiceResultModel<string>> AddAsync(AccountDto dtoItem);
+        Task<ServiceResultModel<string>> DeleteAsync(AccountDto dtoItem);
+        Task<ServiceResultModel<string>> UpdateAsync(AccountDto dtoItem);
+        Task<ServiceResultModel<AccountEntity>> GetSingleItemAsync(string account);
     }
 }
