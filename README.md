@@ -69,8 +69,9 @@
         }
     }
 ```
+<hr>
 
-<H4>Inheritance Design Pattern</H4>
+<H4>Inheritance Design Pattern - Repository</H4>
 
 ```c#
     public interface IRepositoryBase<TEntity>
@@ -126,4 +127,11 @@
         }
     }
 ```
+
+<hr>
+
+ <H4>Inheritance Design Pattern - Repository</H4>
+ 
+ 
+ 
  
