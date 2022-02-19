@@ -121,7 +121,7 @@
 
 <hr>
 
- <H4>Inheritance Design Pattern - Service</H4>
+<H4>Inheritance Design Pattern - Service</H4>
  
  ```C#
     public interface ISalesOrderService : IService
@@ -155,5 +155,42 @@
         private SalesOrderEntity ConvertSalesOrderEntity(SalesOrderDto dtoItem) {...}
     }
 ```
+ </hr>
  
+  <H4>SalesOrderController</H4>
  
+ ```C#
+    [Route("v1/api/[controller]")]
+    [ApiController]
+    public class SalesOrderController : ControllerBase
+    {
+        private readonly ISalesOrderService _salesOrderService;
+        public SalesOrderController(ISalesOrderService salesOrderService)
+        {
+            _salesOrderService = salesOrderService;
+        }
+
+        [HttpPost, Route("AddSalesOrderAsync")]
+        [ValidateModel]
+        public async Task<ApiResultModel<string>> AddSalesOrderAsync(SalesOrderDto addSalesOrderDto) {...}
+
+        [HttpPut, Route("UpdateSalesOrderAsync")]
+        [ValidateModel]
+        public async Task<ApiResultModel<string>> UpdateSalesOrderAsync(SalesOrderDto updateSalesOrderDto) {...}
+
+        [HttpDelete, Route("DeleteSalesOrderAsync")]
+        [ValidateModel]
+        public async Task<ApiResultModel<string>> DeleteSalesOrderAsync(SalesOrderDto deleteSalesOrderDto) {...}
+
+        [HttpGet, Route("GetSingleSalesOrderAsync")]
+        public async Task<ApiResultModel<SalesOrderEntity>> GetSingleSalesOrderAsync(string so) {...}
+
+        [HttpGet, Route("GetAllSalesOrdersAsync")]
+        public async Task<ApiResultModel<SalesOrderEntity>> GetAllSalesOrdersAsync() {...}
+
+ ```
+ 
+ ![image](https://user-images.githubusercontent.com/40432032/154804122-877f96e0-2d1f-4ac0-bdd7-a0e38d327a86.png)
+ 
+ </hr>
+
