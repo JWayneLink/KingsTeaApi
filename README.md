@@ -31,7 +31,7 @@
         // Configuring EF Core
         services.AddDbContextFactory<KTADbContext>(kta => kta.UseSqlServer(Configuration["DefaultConnection"]));            
     }
-
+```
 </hr>
     
 <H4>IoC Framework</H4>
@@ -66,3 +66,4 @@
             builder.RegisterType<CustomerRepository>().As<ICustomerRepository>().InstancePerLifetimeScope();
         }
     }
+```
