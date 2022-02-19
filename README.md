@@ -1,12 +1,6 @@
 # KingsTea
 <H3> Kings Tea Application .NET 5 Backend WEB API</H3>
 
-Install-Package EnterpriseLibrary.Validation.NetCore -Version 6.0.1312
-Install-Package Newtonsoft.Json -Version 13.0.1
-Install-Package Autofac -Version 6.3.0
-Install-Package Autofac.Extensions.DependencyInjection -Version 7.2.0
-Install-Package Microsoft.AspNetCore.Hosting -Version 2.2.7
-Install-Package Microsoft.AspNet.WebApi.Core -Version 5.2.7
 <ul>
   <li>
     Install-Package Microsoft.EntityFrameworkCore -Version 5.0.1
@@ -16,4 +10,26 @@ Install-Package Microsoft.AspNet.WebApi.Core -Version 5.2.7
   </li>   
 </ul>
 
-<
+</hr>
+
+```c#
+        // This method gets called by the runtime. Use this method to add services to the container.
+        public void ConfigureServices(IServiceCollection services)
+        {
+
+            services.AddControllers();
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "KingsTeaApp", Version = "v1" });
+            });
+
+            // Allow CORS
+            services.AddCors(c =>
+            {
+                c.AddPolicy("AllowOrigin", options => options.AllowAnyOrigin());
+            });
+
+            // Configuring EF Core
+            services.AddDbContextFactory<KTADbContext>(kta => kta.UseSqlServer(Configuration["DefaultConnection"]));            
+        }
+```c#
