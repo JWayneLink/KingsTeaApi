@@ -32,7 +32,7 @@
         services.AddDbContextFactory<KTADbContext>(kta => kta.UseSqlServer(Configuration["DefaultConnection"]));            
     }
 ```
-</hr>
+<hr>
     
 <H4>IoC Framework</H4>
 <ul>
@@ -54,12 +54,14 @@
     {
         protected override void Load(ContainerBuilder builder)
         {
+            // Servie DI Register
             builder.RegisterType<DateTimeService>().As<IDateTimeService>().InstancePerLifetimeScope();
             builder.RegisterType<AccountService>().As<IAccountService>().InstancePerLifetimeScope();
             builder.RegisterType<ProductService>().As<IProductService>().InstancePerLifetimeScope();
             builder.RegisterType<SalesOrderService>().As<ISalesOrderService>().InstancePerLifetimeScope();
             builder.RegisterType<CustomerService>().As<ICustomerService>().InstancePerLifetimeScope();
 
+            // Repository DI Register
             builder.RegisterType<AccountRepository>().As<IAccountRepository>().InstancePerLifetimeScope();
             builder.RegisterType<ProductRepository>().As<IProductRepository>().InstancePerLifetimeScope();
             builder.RegisterType<SalesOrderRepository>().As<ISalesOrderRepository>().InstancePerLifetimeScope();
@@ -67,3 +69,44 @@
         }
     }
 ```
+
+<H4>Inheritance Design Pattern</H4>
+```c#
+    public interface IRepositoryBase<TEntity>
+    {
+        Task<int> AddAsync(TEntity item);
+        Task<int> UpdateAsync(TEntity item);
+        Task<TEntity> GetSingleItemAsync(TEntity item);
+        Task<IEnumerable<TEntity>> GetAllItemsAsync();
+        Task<int> DeleteAsync(TEntity item);
+    }
+    
+    public class SalesOrderService : ISalesOrderService
+    {
+        public Task<ServiceResultModel<string>> AddAsync(SalesOrderDto dtoItem)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<ServiceResultModel<string>> DeleteAsync(SalesOrderDto dtoItem)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<ServiceResultModel<SalesOrderEntity>> GetAllItemsAsync()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<ServiceResultModel<SalesOrderEntity>> GetSingleItemAsync(string so)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<ServiceResultModel<string>> UpdateAsync(SalesOrderDto dtoItem)
+        {
+            throw new NotImplementedException();
+        }
+    }
+```
+ 
