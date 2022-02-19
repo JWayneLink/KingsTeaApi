@@ -82,6 +82,15 @@
         Task<int> DeleteAsync(TEntity item);
     }
     
+    public interface ISalesOrderService : IService
+    {
+        Task<ServiceResultModel<string>> AddAsync(SalesOrderDto dtoItem);
+        Task<ServiceResultModel<string>> DeleteAsync(SalesOrderDto dtoItem);
+        Task<ServiceResultModel<string>> UpdateAsync(SalesOrderDto dtoItem);
+        Task<ServiceResultModel<SalesOrderEntity>> GetSingleItemAsync(string so);
+        Task<ServiceResultModel<SalesOrderEntity>> GetAllItemsAsync();
+    }
+    
     public class SalesOrderService : ISalesOrderService
     {
         private readonly ISalesOrderRepository _salesOrderRepository;
