@@ -13,23 +13,23 @@
 </hr>
 
 ```c#
-        // This method gets called by the runtime. Use this method to add services to the container.
-        public void ConfigureServices(IServiceCollection services)
+    // This method gets called by the runtime. Use this method to add services to the container.
+    public void ConfigureServices(IServiceCollection services)
+    {
+
+        services.AddControllers();
+        services.AddSwaggerGen(c =>
         {
+            c.SwaggerDoc("v1", new OpenApiInfo { Title = "KingsTeaApp", Version = "v1" });
+        });
 
-            services.AddControllers();
-            services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "KingsTeaApp", Version = "v1" });
-            });
+        // Allow CORS
+        services.AddCors(c =>
+        {
+            c.AddPolicy("AllowOrigin", options => options.AllowAnyOrigin());
+        });
 
-            // Allow CORS
-            services.AddCors(c =>
-            {
-                c.AddPolicy("AllowOrigin", options => options.AllowAnyOrigin());
-            });
+        // Configuring EF Core
+        services.AddDbContextFactory<KTADbContext>(kta => kta.UseSqlServer(Configuration["DefaultConnection"]));            
+    }
 
-            // Configuring EF Core
-            services.AddDbContextFactory<KTADbContext>(kta => kta.UseSqlServer(Configuration["DefaultConnection"]));            
-        }
-```c#
