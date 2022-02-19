@@ -45,6 +45,14 @@
 </ul>
 
 ```c#
+    public static IHostBuilder CreateHostBuilder(string[] args) =>
+    Host.CreateDefaultBuilder(args)
+      .UseServiceProviderFactory(new AutofacServiceProviderFactory()) // .NET 5 Autofac as the DI container
+      .ConfigureWebHostDefaults(webBuilder =>
+      {
+          webBuilder.UseStartup<Startup>();
+      });
+            
     public void ConfigureContainer(ContainerBuilder builder)
     {
         builder.RegisterModule(new AutofacModule());
