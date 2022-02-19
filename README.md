@@ -101,30 +101,15 @@
             _salesOrderRepository = salesOrderRepository;           
         }
 
-        public Task<ServiceResultModel<string>> AddAsync(SalesOrderDto dtoItem)
-        {
-            throw new NotImplementedException();
-        }
+        public Task<ServiceResultModel<string>> AddAsync(SalesOrderDto dtoItem) {...}
 
-        public Task<ServiceResultModel<string>> DeleteAsync(SalesOrderDto dtoItem)
-        {
-            throw new NotImplementedException();
-        }
+        public Task<ServiceResultModel<string>> DeleteAsync(SalesOrderDto dtoItem) {...}
 
-        public Task<ServiceResultModel<SalesOrderEntity>> GetAllItemsAsync()
-        {
-            throw new NotImplementedException();
-        }
+        public Task<ServiceResultModel<SalesOrderEntity>> GetAllItemsAsync() {...}
 
-        public Task<ServiceResultModel<SalesOrderEntity>> GetSingleItemAsync(string so)
-        {
-            throw new NotImplementedException();
-        }
+        public Task<ServiceResultModel<SalesOrderEntity>> GetSingleItemAsync(string so) {...}
 
-        public Task<ServiceResultModel<string>> UpdateAsync(SalesOrderDto dtoItem)
-        {
-            throw new NotImplementedException();
-        }
+        public Task<ServiceResultModel<string>> UpdateAsync(SalesOrderDto dtoItem) {...}
     }
 ```
 
@@ -151,17 +136,17 @@
             _salesOrderRepository = salesOrderRepository;
         }
 
-        public async Task<ServiceResultModel<string>> AddAsync(SalesOrderDto dtoItem) {}
+        public async Task<ServiceResultModel<string>> AddAsync(SalesOrderDto dtoItem) {...}
 
-        public async Task<ServiceResultModel<string>> DeleteAsync(SalesOrderDto dtoItem) {}
+        public async Task<ServiceResultModel<string>> DeleteAsync(SalesOrderDto dtoItem) {...}
 
-        public async Task<ServiceResultModel<string>> UpdateAsync(SalesOrderDto dtoItem) {}
+        public async Task<ServiceResultModel<string>> UpdateAsync(SalesOrderDto dtoItem) {...}
 
-        public async Task<ServiceResultModel<SalesOrderEntity>> GetSingleItemAsync(string so) {}
+        public async Task<ServiceResultModel<SalesOrderEntity>> GetSingleItemAsync(string so) {...}
 
-        public async Task<ServiceResultModel<SalesOrderEntity>> GetAllItemsAsync() {}
+        public async Task<ServiceResultModel<SalesOrderEntity>> GetAllItemsAsync() {...}
 
-        private SalesOrderEntity ConvertSalesOrderEntity(SalesOrderDto dtoItem) {}
+        private SalesOrderEntity ConvertSalesOrderEntity(SalesOrderDto dtoItem) {...}
     }
 ```
  
