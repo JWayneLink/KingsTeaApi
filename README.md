@@ -71,6 +71,7 @@
 ```
 
 <H4>Inheritance Design Pattern</H4>
+
 ```c#
     public interface IRepositoryBase<TEntity>
     {
