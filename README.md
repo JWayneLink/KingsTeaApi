@@ -84,6 +84,13 @@
     
     public class SalesOrderService : ISalesOrderService
     {
+        private readonly ISalesOrderRepository _salesOrderRepository;
+
+        public SalesOrderService(ISalesOrderRepository salesOrderRepository)
+        {
+            _salesOrderRepository = salesOrderRepository;           
+        }
+
         public Task<ServiceResultModel<string>> AddAsync(SalesOrderDto dtoItem)
         {
             throw new NotImplementedException();
