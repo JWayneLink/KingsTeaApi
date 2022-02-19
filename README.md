@@ -100,25 +100,31 @@
         Task<ServiceResultModel<SalesOrderEntity>> GetAllItemsAsync();
     }
     
-    public class SalesOrderService : ISalesOrderService
+    public interface ISalesOrderRepository : IRepositoryBase<SalesOrderEntity>
     {
-        private readonly ISalesOrderRepository _salesOrderRepository;
+        Task<SalesOrderEntity> GetSingleItemAsync(string so);
+    }
+    
+    public class SalesOrderRepository : ISalesOrderRepository
+    {
+        private readonly IDbContextFactory<KTADbContext> _ctx;
 
-        public SalesOrderService(ISalesOrderRepository salesOrderRepository)
+        public SalesOrderRepository(IDbContextFactory<KTADbContext> ctx)
         {
-            _salesOrderRepository = salesOrderRepository;           
+            _ctx = ctx;
         }
 
-        public Task<ServiceResultModel<string>> AddAsync(SalesOrderDto dtoItem) {...}
+        public async Task<int> AddAsync(SalesOrderEntity item) {...}
 
-        public Task<ServiceResultModel<string>> DeleteAsync(SalesOrderDto dtoItem) {...}
+        public async Task<int> DeleteAsync(SalesOrderEntity item) {...}
 
-        public Task<ServiceResultModel<SalesOrderEntity>> GetAllItemsAsync() {...}
+        public async Task<IEnumerable<SalesOrderEntity>> GetAllItemsAsync() {...}
 
-        public Task<ServiceResultModel<SalesOrderEntity>> GetSingleItemAsync(string so) {...}
+        public async Task<SalesOrderEntity> GetSingleItemAsync(SalesOrderEntity item) {...}
 
-        public Task<ServiceResultModel<string>> UpdateAsync(SalesOrderDto dtoItem) {...}
-    }
+        public async Task<SalesOrderEntity> GetSingleItemAsync(string so) {...}
+
+        public async Task<int> UpdateAsync(SalesOrderEntity item) {...}
 ```
 
 <hr>
