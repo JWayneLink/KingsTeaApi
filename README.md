@@ -116,6 +116,7 @@
         public async Task<SalesOrderEntity> GetSingleItemAsync(string so) {...}
 
         public async Task<int> UpdateAsync(SalesOrderEntity item) {...}
+    }
 ```
 
 <hr>
