@@ -35,20 +35,20 @@ namespace KTA.Data.Entity
         [StringLengthValidator(1, 100)]
         public string Size { get; set; }
 
-        [Column(PRODUCT.Columns.Price, Order = 5)]
+        [Column(PRODUCT.Columns.Sugar, Order = 5)]
+        [NotNullValidator()]
+        [StringLengthValidator(1, 100)]
+        public string Sugar { get; set; }
+
+        [Column(PRODUCT.Columns.Ice, Order = 6)]
+        [NotNullValidator()]
+        [StringLengthValidator(1, 100)]
+        public string Ice { get; set; }
+
+        [Column(PRODUCT.Columns.Price, Order = 7)]
         [NotNullValidator()]
         [StringLengthValidator(1, 100)]
         public decimal Price { get; set; }
-
-        [Column(PRODUCT.Columns.Kcal, Order = 6)]
-        [NotNullValidator()]
-        [StringLengthValidator(1, 100)]
-        public int Kcal { get; set; }
-
-        [Column(PRODUCT.Columns.COO, Order = 7)]
-        [NotNullValidator()]
-        [StringLengthValidator(1, 100)]
-        public string COO { get; set; }
 
         [Column(PRODUCT.Columns.Udt, Order = 8)]
         [NotNullValidator()]

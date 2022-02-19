@@ -12,8 +12,12 @@ namespace KTA.Model.Entities
         [Required]
         public string Account { get; set; }
         public string Name { get; set; }
+        [DataType(DataType.Password)]
         public string Pwd { get; set; }
+        [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
         public string Phone { get; set; }
+        public DateTime Cdt { get; set; }
+        public DateTime Udt { get; set; }
     }
 }

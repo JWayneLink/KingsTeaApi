@@ -14,9 +14,10 @@ namespace KTA.Model.Entities
         public string Name { get; set; }
         public string Category { get; set; }
         public string Size { get; set; }
+        public string Sugar { get; set; }
+        public string Ice { get; set; }
+        [DataType(DataType.Currency)]
         public decimal Price { get; set; }
-        public int Kcal { get; set; }
-        public string COO { get; set; }
         public DateTime Cdt { get; set; }
         public DateTime Udt { get; set; }
     }

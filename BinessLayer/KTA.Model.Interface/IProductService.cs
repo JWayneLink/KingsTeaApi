@@ -15,5 +15,6 @@ namespace KTA.Model.Interface
         Task<ServiceResultModel<string>> UpdateAsync(ProductDto dtoItem);
         Task<ServiceResultModel<string>> DeleteAsync(ProductDto dtoItem);
         Task<ServiceResultModel<ProductEntity>> GetSingleItemAsync(string account);
+        Task<ServiceResultModel<ProductEntity>> GetAllItemsAsync();
     }
 }

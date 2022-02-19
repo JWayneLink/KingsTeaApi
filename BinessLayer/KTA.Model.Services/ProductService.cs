@@ -93,9 +93,9 @@ namespace KTA.Model.Services
                 existItem.Name = dtoItem.Name;
                 existItem.Category = dtoItem.Category;
                 existItem.Size = dtoItem.Size;
+                existItem.Sugar = dtoItem.Sugar;
+                existItem.Ice = dtoItem.Ice;
                 existItem.Price = dtoItem.Price;
-                existItem.Kcal = dtoItem.Kcal;
-                existItem.COO = dtoItem.COO;
                 existItem.Udt = this._dateTimeService.GetCurrentTime();
                 await this._productRepository.UpdateAsync(existItem);
                 serviceResult.IsSuccess = true;
@@ -136,7 +136,35 @@ namespace KTA.Model.Services
                 serviceResult.Data = new List<ProductEntity>();
                 return serviceResult;
             }
-        }   
+        }
+
+        public async Task<ServiceResultModel<ProductEntity>> GetAllItemsAsync()
+        {
+            ServiceResultModel<ProductEntity> serviceResult = new ServiceResultModel<ProductEntity>();
+            try
+            {
+                IEnumerable<ProductEntity> existItems = await this._productRepository.GetAllItemsAsync();
+                if (existItems == null)
+                {
+                    serviceResult.IsSuccess = true;
+                    serviceResult.Message = $"{ProductConstant.ProductQueryDataNotFound}";
+                    serviceResult.Data = new List<ProductEntity>();
+                    return serviceResult;
+                }
+
+                serviceResult.IsSuccess = true;
+                serviceResult.Message = ProductConstant.ProductQueryOK;
+                serviceResult.Data = existItems.ToList();
+                return serviceResult;
+            }
+            catch (Exception ex)
+            {
+                serviceResult.IsSuccess = false;
+                serviceResult.Message = $"{ex.Message} {ex.StackTrace}";
+                serviceResult.Data = new List<ProductEntity>();
+                return serviceResult;
+            }
+        }
 
         private ProductEntity ConvertProductEntity(ProductDto dtoItem)
         {
@@ -145,9 +173,9 @@ namespace KTA.Model.Services
             dbItem.Name = dtoItem.Name;
             dbItem.Category = dtoItem.Category;
             dbItem.Size = dtoItem.Size;
+            dbItem.Sugar = dtoItem.Sugar;
+            dbItem.Ice = dtoItem.Ice;
             dbItem.Price = dtoItem.Price;
-            dbItem.Kcal = dtoItem.Kcal;
-            dbItem.COO = dtoItem.COO;
             dbItem.Cdt = _dateTimeService.GetCurrentTime();
             dbItem.Udt = _dateTimeService.GetCurrentTime();
             return dbItem;

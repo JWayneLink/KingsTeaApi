@@ -135,5 +135,33 @@ namespace KingsTeaApp.Controllers
                 return result;
             }
         }
+
+        [HttpGet, Route("GetAllProductsAsync")]
+        public async Task<ApiResultModel<ProductEntity>> GetAllProductsAsync()
+        {
+            ApiResultModel<ProductEntity> result = new ApiResultModel<ProductEntity>();
+            try
+            {
+                ServiceResultModel<ProductEntity> serviceResult = await this._productService.GetAllItemsAsync();
+                if (!serviceResult.IsSuccess)
+                {
+                    // service exception
+                    result.IsSuccess = serviceResult.IsSuccess;
+                    result.Message = serviceResult.Message;
+                    return result;
+                }
+
+                result.IsSuccess = serviceResult.IsSuccess;
+                result.Message = serviceResult.Message;
+                result.Data = serviceResult.Data;
+                return result;
+            }
+            catch (Exception ex)
+            {
+                result.IsSuccess = false;
+                result.Message = ex.Message + ex.StackTrace;
+                return result;
+            }
+        }
     }
 }

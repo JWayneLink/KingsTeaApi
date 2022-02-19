@@ -9,7 +9,7 @@ using KTA.Data.Schema;
 
 namespace KTA.Data.Entity
 {
-    public class AccountEntity
+    public class AccountEntity : BaseEntity
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Column(ACCOUNT.Columns.Id, Order = 0)]

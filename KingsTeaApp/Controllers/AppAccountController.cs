@@ -134,6 +134,34 @@ namespace KingsTeaApp.Controllers
                 result.Message = ex.Message + ex.StackTrace;
                 return result;
             }
-        }        
+        }
+
+        [HttpGet, Route("GetAllAccountsAsync")]
+        public async Task<ApiResultModel<AccountEntity>> GetAllAccountsAsync()
+        {
+            ApiResultModel<AccountEntity> result = new ApiResultModel<AccountEntity>();
+            try
+            {
+                ServiceResultModel<AccountEntity> serviceResult = await this._accountService.GetAllItemsAsync();
+                if (!serviceResult.IsSuccess)
+                {
+                    // service exception
+                    result.IsSuccess = serviceResult.IsSuccess;
+                    result.Message = serviceResult.Message;
+                    return result;
+                }
+
+                result.IsSuccess = serviceResult.IsSuccess;
+                result.Message = serviceResult.Message;
+                result.Data = serviceResult.Data;
+                return result;
+            }
+            catch (Exception ex)
+            {
+                result.IsSuccess = false;
+                result.Message = ex.Message + ex.StackTrace;
+                return result;
+            }
+        }
     }
 }

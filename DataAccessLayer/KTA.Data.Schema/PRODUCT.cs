@@ -17,9 +17,9 @@ namespace KTA.Data.Schema
 			public const string Name = "Name";
 			public const string Category = "Category";
 			public const string Size = "Size";
+			public const string Sugar = "Sugar";
+			public const string Ice = "Ice";
 			public const string Price = "Price";
-			public const string Kcal = "Kcal";
-			public const string COO = "COO";
 			public const string Cdt = "Cdt";
 			public const string Udt = "Udt";
 		}

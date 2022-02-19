@@ -9,4 +9,3 @@ C:\Users\iec090297\source\repos\KingsTea\BinessLayer\KTA.Model.Exception\obj\Deb
 C:\Users\iec090297\source\repos\KingsTea\BinessLayer\KTA.Model.Exception\obj\Debug\net5.0\KTA.Model.ExceptionHelper.dll
 C:\Users\iec090297\source\repos\KingsTea\BinessLayer\KTA.Model.Exception\obj\Debug\net5.0\ref\KTA.Model.ExceptionHelper.dll
 C:\Users\iec090297\source\repos\KingsTea\BinessLayer\KTA.Model.Exception\obj\Debug\net5.0\KTA.Model.ExceptionHelper.pdb
-C:\Users\iec090297\source\repos\KingsTea\BinessLayer\KTA.Model.Exception\obj\Debug\net5.0\KTA.Model.ExceptionHelper.csproj.AssemblyReference.cache

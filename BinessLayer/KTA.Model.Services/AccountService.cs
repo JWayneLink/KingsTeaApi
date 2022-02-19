@@ -136,6 +136,34 @@ namespace KTA.Model.Services
             }
         }
 
+        public async Task<ServiceResultModel<AccountEntity>> GetAllItemsAsync()
+        {
+            ServiceResultModel<AccountEntity> serviceResult = new ServiceResultModel<AccountEntity>();            
+            try
+            {
+                IEnumerable<AccountEntity> existItems = await this._accountRepository.GetAllItemsAsync();                
+                if (existItems == null)
+                {
+                    serviceResult.IsSuccess = true;
+                    serviceResult.Message = $"{AccountConstant.AccountQueryDataNotFound}";
+                    serviceResult.Data = new List<AccountEntity>();
+                    return serviceResult;
+                }
+
+                serviceResult.IsSuccess = true;
+                serviceResult.Message = AccountConstant.AccountQueryOK;
+                serviceResult.Data = existItems.ToList();
+                return serviceResult;
+            }
+            catch (Exception ex)
+            {
+                serviceResult.IsSuccess = false;
+                serviceResult.Message = $"{ex.Message} {ex.StackTrace}";
+                serviceResult.Data = new List<AccountEntity>();
+                return serviceResult;
+            }
+        }
+
         private AccountEntity ConvertAccountEntity(AccountDto dtoItem)
         {
             AccountEntity dbItem = new AccountEntity();
