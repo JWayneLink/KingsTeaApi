@@ -1,2 +1,196 @@
 # KingsTea
- Kings Tea Application .NET 5 Backend API
+<H3> Kings Tea Application .NET 5 Backend WEB API </H3>
+
+<H4>MSSQL Database</H4>
+<ul>
+  <li>
+    Install-Package Microsoft.EntityFrameworkCore -Version 5.0.1
+  </li>
+    <li>
+    Install-Package Microsoft.EntityFrameworkCore.SqlServer -Version 5.0.1
+  </li>   
+</ul>
+
+```c#
+    // This method gets called by the runtime. Use this method to add services to the container.
+    public void ConfigureServices(IServiceCollection services)
+    {
+
+        services.AddControllers();
+        services.AddSwaggerGen(c =>
+        {
+            c.SwaggerDoc("v1", new OpenApiInfo { Title = "KingsTeaApp", Version = "v1" });
+        });
+
+        // Allow CORS
+        services.AddCors(c =>
+        {
+            c.AddPolicy("AllowOrigin", options => options.AllowAnyOrigin());
+        });
+
+        // Configuring EF Core
+        services.AddDbContextFactory<KTADbContext>(kta => kta.UseSqlServer(Configuration["DefaultConnection"]));            
+    }
+```
+<hr>
+    
+<H4>IoC Framework</H4>
+<ul>
+  <li>
+    Install-Package Autofac -Version 6.3.0
+  </li>
+    <li>
+    Install-Package Autofac.Extensions.DependencyInjection -Version 7.2.0
+  </li>   
+</ul>
+
+```c#
+    public static IHostBuilder CreateHostBuilder(string[] args) =>
+    Host.CreateDefaultBuilder(args)
+      .UseServiceProviderFactory(new AutofacServiceProviderFactory()) // .NET 5 Autofac as the DI container
+      .ConfigureWebHostDefaults(webBuilder =>
+      {
+          webBuilder.UseStartup<Startup>();
+      });
+            
+    public void ConfigureContainer(ContainerBuilder builder)
+    {
+        builder.RegisterModule(new AutofacModule());
+    }
+    
+    public class AutofacModule : Module
+    {
+        protected override void Load(ContainerBuilder builder)
+        {
+            // Servie DI Register
+            builder.RegisterType<DateTimeService>().As<IDateTimeService>().InstancePerLifetimeScope();
+            builder.RegisterType<AccountService>().As<IAccountService>().InstancePerLifetimeScope();
+            builder.RegisterType<ProductService>().As<IProductService>().InstancePerLifetimeScope();
+            builder.RegisterType<SalesOrderService>().As<ISalesOrderService>().InstancePerLifetimeScope();
+            builder.RegisterType<CustomerService>().As<ICustomerService>().InstancePerLifetimeScope();
+
+            // Repository DI Register
+            builder.RegisterType<AccountRepository>().As<IAccountRepository>().InstancePerLifetimeScope();
+            builder.RegisterType<ProductRepository>().As<IProductRepository>().InstancePerLifetimeScope();
+            builder.RegisterType<SalesOrderRepository>().As<ISalesOrderRepository>().InstancePerLifetimeScope();
+            builder.RegisterType<CustomerRepository>().As<ICustomerRepository>().InstancePerLifetimeScope();
+        }
+    }
+```
+<hr>
+
+<H4>Inheritance Design Pattern - Repository</H4>
+
+```c#
+    public interface IRepositoryBase<TEntity>
+    {
+        Task<int> AddAsync(TEntity item);
+        Task<int> UpdateAsync(TEntity item);
+        Task<TEntity> GetSingleItemAsync(TEntity item);
+        Task<IEnumerable<TEntity>> GetAllItemsAsync();
+        Task<int> DeleteAsync(TEntity item);
+    }
+    
+    public interface ISalesOrderRepository : IRepositoryBase<SalesOrderEntity>
+    {
+        Task<SalesOrderEntity> GetSingleItemAsync(string so);
+    }
+    
+    public class SalesOrderRepository : ISalesOrderRepository
+    {
+        private readonly IDbContextFactory<KTADbContext> _ctx;
+
+        public SalesOrderRepository(IDbContextFactory<KTADbContext> ctx)
+        {
+            _ctx = ctx;
+        }
+
+        public async Task<int> AddAsync(SalesOrderEntity item) {...}
+
+        public async Task<int> DeleteAsync(SalesOrderEntity item) {...}
+
+        public async Task<IEnumerable<SalesOrderEntity>> GetAllItemsAsync() {...}
+
+        public async Task<SalesOrderEntity> GetSingleItemAsync(SalesOrderEntity item) {...}
+
+        public async Task<SalesOrderEntity> GetSingleItemAsync(string so) {...}
+
+        public async Task<int> UpdateAsync(SalesOrderEntity item) {...}
+    }
+```
+
+<hr>
+
+<H4>Inheritance Design Pattern - Service</H4>
+ 
+ ```C#
+    public interface ISalesOrderService : IService
+    {
+        Task<ServiceResultModel<string>> AddAsync(SalesOrderDto dtoItem);
+        Task<ServiceResultModel<string>> DeleteAsync(SalesOrderDto dtoItem);
+        Task<ServiceResultModel<string>> UpdateAsync(SalesOrderDto dtoItem);
+        Task<ServiceResultModel<SalesOrderEntity>> GetSingleItemAsync(string so);
+        Task<ServiceResultModel<SalesOrderEntity>> GetAllItemsAsync();
+    }    
+    
+    public class SalesOrderService : ISalesOrderService
+    {
+        private readonly ISalesOrderRepository _salesOrderRepository;
+
+        public SalesOrderService(ISalesOrderRepository salesOrderRepository)
+        {
+            _salesOrderRepository = salesOrderRepository;
+        }
+
+        public async Task<ServiceResultModel<string>> AddAsync(SalesOrderDto dtoItem) {...}
+
+        public async Task<ServiceResultModel<string>> DeleteAsync(SalesOrderDto dtoItem) {...}
+
+        public async Task<ServiceResultModel<string>> UpdateAsync(SalesOrderDto dtoItem) {...}
+
+        public async Task<ServiceResultModel<SalesOrderEntity>> GetSingleItemAsync(string so) {...}
+
+        public async Task<ServiceResultModel<SalesOrderEntity>> GetAllItemsAsync() {...}
+
+        private SalesOrderEntity ConvertSalesOrderEntity(SalesOrderDto dtoItem) {...}
+    }
+```
+ </hr>
+ 
+  <H4>SalesOrderController</H4>
+ 
+ ```C#
+    [Route("v1/api/[controller]")]
+    [ApiController]
+    public class SalesOrderController : ControllerBase
+    {
+        private readonly ISalesOrderService _salesOrderService;
+        public SalesOrderController(ISalesOrderService salesOrderService)
+        {
+            _salesOrderService = salesOrderService;
+        }
+
+        [HttpPost, Route("AddSalesOrderAsync")]
+        [ValidateModel]
+        public async Task<ApiResultModel<string>> AddSalesOrderAsync(SalesOrderDto addSalesOrderDto) {...}
+
+        [HttpPut, Route("UpdateSalesOrderAsync")]
+        [ValidateModel]
+        public async Task<ApiResultModel<string>> UpdateSalesOrderAsync(SalesOrderDto updateSalesOrderDto) {...}
+
+        [HttpDelete, Route("DeleteSalesOrderAsync")]
+        [ValidateModel]
+        public async Task<ApiResultModel<string>> DeleteSalesOrderAsync(SalesOrderDto deleteSalesOrderDto) {...}
+
+        [HttpGet, Route("GetSingleSalesOrderAsync")]
+        public async Task<ApiResultModel<SalesOrderEntity>> GetSingleSalesOrderAsync(string so) {...}
+
+        [HttpGet, Route("GetAllSalesOrdersAsync")]
+        public async Task<ApiResultModel<SalesOrderEntity>> GetAllSalesOrdersAsync() {...}
+
+ ```
+ 
+ ![image](https://user-images.githubusercontent.com/40432032/154804122-877f96e0-2d1f-4ac0-bdd7-a0e38d327a86.png)
+ 
+ </hr>
+
