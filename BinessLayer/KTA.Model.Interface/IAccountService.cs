@@ -15,5 +15,6 @@ namespace KTA.Model.Interface
         Task<ServiceResultModel<string>> UpdateAsync(AccountDto dtoItem);
         Task<ServiceResultModel<AccountEntity>> GetSingleItemAsync(string account);
         Task<ServiceResultModel<AccountEntity>> GetAllItemsAsync();
+        Task<ServiceResultModel<string>> AuthValidation(AccountDto dtoItem);
     }
 }

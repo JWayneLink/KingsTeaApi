@@ -25,12 +25,14 @@ namespace KingsTeaApp
             // InstancePerLifetimeScope() 獨立容器，在使用完畢後可任意Dispose()而不會影響IContainer。
             #endregion
 
+            // Service DI Register
             builder.RegisterType<DateTimeService>().As<IDateTimeService>().InstancePerLifetimeScope();
             builder.RegisterType<AccountService>().As<IAccountService>().InstancePerLifetimeScope();
             builder.RegisterType<ProductService>().As<IProductService>().InstancePerLifetimeScope();
             builder.RegisterType<SalesOrderService>().As<ISalesOrderService>().InstancePerLifetimeScope();
             builder.RegisterType<CustomerService>().As<ICustomerService>().InstancePerLifetimeScope();
 
+            // Repository DI Register
             builder.RegisterType<AccountRepository>().As<IAccountRepository>().InstancePerLifetimeScope();
             builder.RegisterType<ProductRepository>().As<IProductRepository>().InstancePerLifetimeScope();
             builder.RegisterType<SalesOrderRepository>().As<ISalesOrderRepository>().InstancePerLifetimeScope();

@@ -164,6 +164,42 @@ namespace KTA.Model.Services
             }
         }
 
+        public async Task<ServiceResultModel<string>> AuthValidation(AccountDto dtoItem)
+        {
+            ServiceResultModel<string> serviceResult = new ServiceResultModel<string>();
+            try
+            {
+                AccountEntity existItem = await this._accountRepository.GetSingleItemAsync(dtoItem.Account);
+                if (existItem == null)
+                {
+                    serviceResult.IsSuccess = true;
+                    serviceResult.Message = $"{dtoItem.Account} {AccountConstant.AccountQueryDataNotFound}";
+                    serviceResult.Data = new List<string>();
+                    return serviceResult;
+                }
+
+                if (!existItem.Pwd.Equals(dtoItem.Pwd))
+                {
+                    serviceResult.IsSuccess = false;
+                    serviceResult.Message = $"Account {dtoItem.Account} login fail. Password Incorrect.";
+                    serviceResult.Data = new List<string>();
+                    return serviceResult;
+                }
+
+                serviceResult.IsSuccess = true;
+                serviceResult.Message = $"Account {dtoItem.Account} login success.";
+                serviceResult.Data = new List<string>();
+                return serviceResult;
+            }
+            catch (Exception ex)
+            {
+                serviceResult.IsSuccess = false;
+                serviceResult.Message = $"{ex.Message} {ex.StackTrace}";
+                serviceResult.Data = new List<string>();
+                return serviceResult;
+            }
+        }
+
         private AccountEntity ConvertAccountEntity(AccountDto dtoItem)
         {
             AccountEntity dbItem = new AccountEntity();

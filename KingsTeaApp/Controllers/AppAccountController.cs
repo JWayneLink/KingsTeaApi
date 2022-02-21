@@ -163,5 +163,33 @@ namespace KingsTeaApp.Controllers
                 return result;
             }
         }
+
+        [HttpPost, Route("AccountLoginAsync")]
+        public async Task<ApiResultModel<string>> AccountLoginAsync(AccountDto loginDto)
+        {
+            ApiResultModel<string> result = new ApiResultModel<string>();
+            try
+            {
+                ServiceResultModel<string> serviceResult = await this._accountService.AuthValidation(loginDto);
+                if (!serviceResult.IsSuccess)
+                {
+                    // service exception
+                    result.IsSuccess = serviceResult.IsSuccess;
+                    result.Message = serviceResult.Message;
+                    return result;
+                }
+
+                result.IsSuccess = serviceResult.IsSuccess;
+                result.Message = serviceResult.Message;
+                result.Data = new List<string>();
+                return result;
+            }
+            catch (Exception ex)
+            {
+                result.IsSuccess = false;
+                result.Message = ex.Message + ex.StackTrace;
+                return result;
+            }
+        }
     }
 }
