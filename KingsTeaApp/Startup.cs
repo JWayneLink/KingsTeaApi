@@ -13,9 +13,12 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using Polly;
+using Polly.Extensions.Http;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Threading.Tasks;
 
 namespace KingsTeaApp
@@ -48,10 +51,54 @@ namespace KingsTeaApp
             // Configuring EF Core
             services.AddDbContextFactory<KTADbContext>(kta => kta.UseSqlServer(Configuration["DefaultConnection"]));
 
+            #region 設定直接忽略ModelState.IsValid的檢查
             //services.Configure<ApiBehaviorOptions>(options =>
             //{
             //    options.SuppressModelStateInvalidFilter = true;
             //});
+            #endregion
+
+            // 1. 建立Autofac容器
+            ContainerBuilder builder = new ContainerBuilder();
+
+            // 2.註冊型別(可限制創建物件生命週期)
+            builder.Register(c => new CustomerService(new HttpClient())).As<ICustomerService>().InstancePerLifetimeScope();
+ 
+            // 3.建立IContainer
+            IContainer container = builder.Build();
+
+            // Add http client CustomerService
+            services.AddHttpClient<ICustomerService, CustomerService>(client =>
+            {
+                client.BaseAddress = new Uri(Configuration["PlaceholderUsers"]);
+            })
+            .AddPolicyHandler(GetRetryPolicy())
+            .AddPolicyHandler(GetCircuitBreakerPolicy())
+            .SetHandlerLifetime(TimeSpan.FromMinutes(5));
+
+            // Add http client ProductService
+            services.AddHttpClient<IProductService, ProductService>(client =>
+            {
+                client.BaseAddress = new Uri(Configuration["PlaceholderAlbums"]);
+            })
+            .AddPolicyHandler(GetRetryPolicy())
+            .AddPolicyHandler(GetCircuitBreakerPolicy())
+            .SetHandlerLifetime(TimeSpan.FromMinutes(5));
+        }
+
+        static IAsyncPolicy<HttpResponseMessage> GetRetryPolicy()
+        {
+            return HttpPolicyExtensions
+                .HandleTransientHttpError()
+                .OrResult(msg => msg.StatusCode == System.Net.HttpStatusCode.NotFound)
+                .WaitAndRetryAsync(6, retryAttempt => TimeSpan.FromSeconds(Math.Pow(2, retryAttempt)));
+        }
+
+        static IAsyncPolicy<HttpResponseMessage> GetCircuitBreakerPolicy()
+        {
+            return HttpPolicyExtensions
+                .HandleTransientHttpError()
+                .CircuitBreakerAsync(5, TimeSpan.FromSeconds(30));
         }
 
         public void ConfigureContainer(ContainerBuilder builder)
@@ -59,12 +106,6 @@ namespace KingsTeaApp
             builder.RegisterModule(new AutofacModule());
         }
 
-        //public static void Register(HttpConfiguration config)
-        //{
-        //    config.Filters.Add(new ValidateModelAttribute());
-
-        //    // ...
-        //}
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

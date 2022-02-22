@@ -5,6 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\..\DataAccessLayer\KTA.Data.Entity\KTA.Data.Entity.csproj" />
     <ProjectReference Include="..\..\DataAccessLayer\KTA.Data.Service\KTA.Data.Service.csproj" />
     <ProjectReference Include="..\KTA.Model.Constants\KTA.Model.Constants.csproj" />

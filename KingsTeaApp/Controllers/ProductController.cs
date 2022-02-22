@@ -82,12 +82,12 @@ namespace KingsTeaApp.Controllers
 
         [HttpDelete, Route("DeleteProductAsync")]
         [ValidateModel]
-        public async Task<ApiResultModel<string>> DeleteProductAsync(ProductDto deleteProductDto)
+        public async Task<ApiResultModel<string>> DeleteProductAsync(string pn)
         {
             ApiResultModel<string> result = new ApiResultModel<string>();
             try
             {
-                ServiceResultModel<string> serviceResult = await this._productService.DeleteAsync(deleteProductDto);
+                ServiceResultModel<string> serviceResult = await this._productService.DeleteAsync(pn);
                 if (!serviceResult.IsSuccess)
                 {
                     // service exception

@@ -172,8 +172,8 @@ namespace KTA.Model.Services
                 AccountEntity existItem = await this._accountRepository.GetSingleItemAsync(dtoItem.Account);
                 if (existItem == null)
                 {
-                    serviceResult.IsSuccess = true;
-                    serviceResult.Message = $"{dtoItem.Account} {AccountConstant.AccountQueryDataNotFound}";
+                    serviceResult.IsSuccess = false;
+                    serviceResult.Message = $"{dtoItem.Account} {AccountConstant.AccountQueryDataNotFound}. Please Sign up new account.";
                     serviceResult.Data = new List<string>();
                     return serviceResult;
                 }

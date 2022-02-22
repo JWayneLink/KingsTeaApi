@@ -86,3 +86,6 @@ C:\Users\iec090297\source\repos\KingsTea\KingsTeaApp\bin\Debug\net5.0\System.Net
 C:\Users\iec090297\source\repos\KingsTea\KingsTeaApp\bin\Debug\net5.0\System.Web.Http.dll
 C:\Users\iec090297\source\repos\KingsTea\KingsTeaApp\bin\Debug\net5.0\Newtonsoft.Json.Bson.dll
 C:\Users\iec090297\source\repos\KingsTea\KingsTeaApp\obj\Debug\net5.0\KingsTeaApp.csproj.CopyComplete
+C:\Users\iec090297\source\repos\KingsTea\KingsTeaApp\bin\Debug\net5.0\Microsoft.Extensions.Http.Polly.dll
+C:\Users\iec090297\source\repos\KingsTea\KingsTeaApp\bin\Debug\net5.0\Polly.dll
+C:\Users\iec090297\source\repos\KingsTea\KingsTeaApp\bin\Debug\net5.0\Polly.Extensions.Http.dll

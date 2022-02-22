@@ -7,6 +7,7 @@ using KTA.Model.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Threading.Tasks;
 
 namespace KingsTeaApp
@@ -30,7 +31,8 @@ namespace KingsTeaApp
             builder.RegisterType<AccountService>().As<IAccountService>().InstancePerLifetimeScope();
             builder.RegisterType<ProductService>().As<IProductService>().InstancePerLifetimeScope();
             builder.RegisterType<SalesOrderService>().As<ISalesOrderService>().InstancePerLifetimeScope();
-            builder.RegisterType<CustomerService>().As<ICustomerService>().InstancePerLifetimeScope();
+            //builder.RegisterType<CustomerService>().As<ICustomerService>().InstancePerLifetimeScope();
+
 
             // Repository DI Register
             builder.RegisterType<AccountRepository>().As<IAccountRepository>().InstancePerLifetimeScope();

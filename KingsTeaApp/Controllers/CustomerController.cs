@@ -160,5 +160,34 @@ namespace KingsTeaApp.Controllers
                 return result;
             }
         }
+
+        [HttpGet, Route("GetDummyCustomerAsync")]
+        public async Task<ApiResultModel<DummyCustomerDto>> GetDummyCustomerAsync(string id)
+        {
+            // https://jsonplaceholder.typicode.com/users/1
+            ApiResultModel<DummyCustomerDto> result = new ApiResultModel<DummyCustomerDto>();
+            try
+            {
+                ServiceResultModel<DummyCustomerDto> serviceResult = await this._customerService.GetDummyCustomers(id);
+                if (!serviceResult.IsSuccess)
+                {
+                    // service exception
+                    result.IsSuccess = serviceResult.IsSuccess;
+                    result.Message = serviceResult.Message;
+                    return result;
+                }
+
+                result.IsSuccess = serviceResult.IsSuccess;
+                result.Message = serviceResult.Message;
+                result.Data = new List<DummyCustomerDto>() { serviceResult.Data.FirstOrDefault() };
+                return result;
+            }
+            catch (Exception ex)
+            {
+                result.IsSuccess = false;
+                result.Message = ex.Message + ex.StackTrace;
+                return result;
+            }
+        }
     }
 }

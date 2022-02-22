@@ -6,6 +6,7 @@ using KTA.Model.Interface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -15,11 +16,15 @@ namespace KTA.Model.Services
     {
         private readonly IDateTimeService _dateTimeService;
         private readonly IProductRepository _productRepository;
+        private readonly HttpClient _httpClient;
+        private readonly Uri _baseAlbumsUrl;
 
-        public ProductService(IProductRepository productRepository, IDateTimeService dateTimeService)
+        public ProductService(IProductRepository productRepository, IDateTimeService dateTimeService, HttpClient httpClient)
         {
             _productRepository = productRepository;
             _dateTimeService = dateTimeService;
+            _httpClient = httpClient;
+            _baseAlbumsUrl = httpClient.BaseAddress;
         }
 
         public async Task<ServiceResultModel<string>> AddAsync(ProductDto dtoItem)
@@ -49,23 +54,22 @@ namespace KTA.Model.Services
             }
         }
 
-        public async Task<ServiceResultModel<string>> DeleteAsync(ProductDto dtoItem)
+        public async Task<ServiceResultModel<string>> DeleteAsync(string pn)
         {
             ServiceResultModel<string> serviceResult = new ServiceResultModel<string>();
             try
-            {
-                var deleteItem = this.ConvertProductEntity(dtoItem);
-                ProductEntity existItem = await this._productRepository.GetSingleItemAsync(deleteItem);
+            {                
+                ProductEntity existItem = await this._productRepository.GetSingleItemAsync(pn);
                 if (existItem == null)
                 {
                     serviceResult.IsSuccess = true;
-                    serviceResult.Message = $"{deleteItem.Pn} {ProductConstant.ProductDeleteDataNotFound}";
+                    serviceResult.Message = $"{pn} {ProductConstant.ProductDeleteDataNotFound}";
                     return serviceResult;
                 }
 
                 await this._productRepository.DeleteAsync(existItem);
                 serviceResult.IsSuccess = true;
-                serviceResult.Message = $"{deleteItem.Pn} {ProductConstant.ProductDeleteOK}";
+                serviceResult.Message = $"{pn} {ProductConstant.ProductDeleteOK}";
                 return serviceResult;                
             }
             catch (Exception ex)

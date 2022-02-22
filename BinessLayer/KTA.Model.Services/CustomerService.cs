@@ -3,9 +3,11 @@ using KTA.Data.Service;
 using KTA.Model.Constants;
 using KTA.Model.Entities;
 using KTA.Model.Interface;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -15,11 +17,19 @@ namespace KTA.Model.Services
     {
         private readonly IDateTimeService _dateTimeService;
         private readonly ICustomerRepository _customerRepository;
+        private readonly HttpClient _httpClient;
+        private readonly Uri _baseCustomerUrl;
 
+        public CustomerService(HttpClient httpClient)
+        {
+            _httpClient = httpClient;
+            _baseCustomerUrl = httpClient.BaseAddress;
+        }
         public CustomerService(ICustomerRepository customerRepository, IDateTimeService dateTimeService)
         {
             _customerRepository = customerRepository;
             _dateTimeService = dateTimeService;
+
         }
 
         public async Task<ServiceResultModel<string>> AddAsync(CustomerDto dtoItem)
@@ -161,6 +171,26 @@ namespace KTA.Model.Services
                 serviceResult.Message = $"{ex.Message} {ex.StackTrace}";
                 serviceResult.Data = new List<CustomerEntity>();
                 return serviceResult;
+            }
+        }
+
+        public async Task<ServiceResultModel<DummyCustomerDto>> GetDummyCustomers(string id)
+        {
+            ServiceResultModel<DummyCustomerDto> serviceResult = new ServiceResultModel<DummyCustomerDto>();
+            try
+            {                
+                string uri = $"{this._baseCustomerUrl}{id}";
+                var responseString = await _httpClient.GetStringAsync(uri);
+                DummyCustomerDto dummyCust = JsonConvert.DeserializeObject<DummyCustomerDto>(responseString);
+                serviceResult.IsSuccess = true;
+                serviceResult.Data = new List<DummyCustomerDto>() { dummyCust };
+                return serviceResult;
+            }
+            catch (Exception ex)
+            {
+                serviceResult.IsSuccess = false;
+                serviceResult.Message = ex.Message + ex.StackTrace;
+                return serviceResult;                
             }
         }
 
