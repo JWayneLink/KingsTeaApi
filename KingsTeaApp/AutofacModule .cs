@@ -40,7 +40,7 @@ namespace KingsTeaApp
             builder.RegisterType<SalesOrderRepository>().As<ISalesOrderRepository>().InstancePerLifetimeScope();
             builder.RegisterType<CustomerRepository>().As<ICustomerRepository>().InstancePerLifetimeScope();
 
-            builder.RegisterType<ValidateModelAttribute>();
+            //builder.RegisterType<ValidateModelAttribute>();
 
 
         }

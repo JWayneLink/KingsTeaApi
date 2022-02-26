@@ -22,7 +22,7 @@ namespace KingsTeaApp.Controllers
         }
 
         [HttpPost, Route("AddCustomerAsync")]
-        [ValidateModel]
+        [ServiceFilter(typeof(ValidationFilterAttribute))]
         public async Task<ApiResultModel<string>> AddCustomerAsync(CustomerDto addCustomerDto)
         {
             ApiResultModel<string> result = new ApiResultModel<string>();
@@ -50,7 +50,7 @@ namespace KingsTeaApp.Controllers
         }
 
         [HttpPut, Route("UpdateCustomerAsync")]
-        [ValidateModel]
+        [ServiceFilter(typeof(ValidationFilterAttribute))]
         public async Task<ApiResultModel<string>> UpdateCustomerAsync(CustomerDto updateCustomertDto)
         {
             ApiResultModel<string> result = new ApiResultModel<string>();
@@ -78,13 +78,13 @@ namespace KingsTeaApp.Controllers
         }
 
         [HttpDelete, Route("DeleteCustomerAsync")]
-        [ValidateModel]
-        public async Task<ApiResultModel<string>> DeleteCustomerAsync(CustomerDto deleteCustomerDto)
+        [ServiceFilter(typeof(ValidationFilterAttribute))]
+        public async Task<ApiResultModel<string>> DeleteCustomerAsync(string custId)
         {
             ApiResultModel<string> result = new ApiResultModel<string>();
             try
             {
-                ServiceResultModel<string> serviceResult = await this._customerService.DeleteAsync(deleteCustomerDto);
+                ServiceResultModel<string> serviceResult = await this._customerService.DeleteAsync(custId);
                 if (!serviceResult.IsSuccess)
                 {
                     // service exception

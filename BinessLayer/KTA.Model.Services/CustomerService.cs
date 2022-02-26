@@ -20,16 +20,12 @@ namespace KTA.Model.Services
         private readonly HttpClient _httpClient;
         private readonly Uri _baseCustomerUrl;
 
-        public CustomerService(HttpClient httpClient)
-        {
-            _httpClient = httpClient;
-            _baseCustomerUrl = httpClient.BaseAddress;
-        }
-        public CustomerService(ICustomerRepository customerRepository, IDateTimeService dateTimeService)
+        public CustomerService(ICustomerRepository customerRepository, IDateTimeService dateTimeService, HttpClient httpClient)
         {
             _customerRepository = customerRepository;
             _dateTimeService = dateTimeService;
-
+            _httpClient = httpClient;
+            _baseCustomerUrl = httpClient.BaseAddress;
         }
 
         public async Task<ServiceResultModel<string>> AddAsync(CustomerDto dtoItem)
@@ -59,23 +55,22 @@ namespace KTA.Model.Services
             }
         }
 
-        public async Task<ServiceResultModel<string>> DeleteAsync(CustomerDto dtoItem)
+        public async Task<ServiceResultModel<string>> DeleteAsync(string custId)
         {
             ServiceResultModel<string> serviceResult = new ServiceResultModel<string>();
             try
             {
-                var deleteItem = this.ConvertCustomerEntity(dtoItem);
-                CustomerEntity existItem = await this._customerRepository.GetSingleItemAsync(deleteItem);
+                CustomerEntity existItem = await this._customerRepository.GetSingleItemAsync(custId);
                 if (existItem == null)
                 {
                     serviceResult.IsSuccess = true;
-                    serviceResult.Message = $"{deleteItem.CustId} {CustomerConstant.CustomerDeleteDataNotFound}";
+                    serviceResult.Message = $"{custId} {CustomerConstant.CustomerDeleteDataNotFound}";
                     return serviceResult;
                 }
 
                 await this._customerRepository.DeleteAsync(existItem);
                 serviceResult.IsSuccess = true;
-                serviceResult.Message = $"{deleteItem.CustId} {CustomerConstant.CustomerDeleteOK}";
+                serviceResult.Message = $"{custId} {CustomerConstant.CustomerDeleteOK}";
                 return serviceResult;
             }
             catch (Exception ex)

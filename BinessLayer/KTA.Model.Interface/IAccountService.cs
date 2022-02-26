@@ -16,5 +16,6 @@ namespace KTA.Model.Interface
         Task<ServiceResultModel<AccountEntity>> GetSingleItemAsync(string account);
         Task<ServiceResultModel<AccountEntity>> GetAllItemsAsync();
         Task<ServiceResultModel<string>> AuthValidation(AccountDto dtoItem);
+        Task<ServiceResultModel<string>> ForgotPassword(string account, string email);
     }
 }

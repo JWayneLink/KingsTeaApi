@@ -22,7 +22,7 @@ namespace KingsTeaApp.Controllers
         }
 
         [HttpPost, Route("AddSalesOrderAsync")]
-        [ValidateModel]
+        [ServiceFilter(typeof(ValidationFilterAttribute))]
         public async Task<ApiResultModel<string>> AddSalesOrderAsync(SalesOrderDto addSalesOrderDto)
         {
             ApiResultModel<string> result = new ApiResultModel<string>();
@@ -50,7 +50,7 @@ namespace KingsTeaApp.Controllers
         }
 
         [HttpPut, Route("UpdateSalesOrderAsync")]
-        [ValidateModel]
+        [ServiceFilter(typeof(ValidationFilterAttribute))]
         public async Task<ApiResultModel<string>> UpdateSalesOrderAsync(SalesOrderDto updateSalesOrderDto)
         {
             ApiResultModel<string> result = new ApiResultModel<string>();
@@ -78,7 +78,7 @@ namespace KingsTeaApp.Controllers
         }
 
         [HttpDelete, Route("DeleteSalesOrderAsync")]
-        [ValidateModel]
+        [ServiceFilter(typeof(ValidationFilterAttribute))]
         public async Task<ApiResultModel<string>> DeleteSalesOrderAsync(SalesOrderDto deleteSalesOrderDto)
         {
             ApiResultModel<string> result = new ApiResultModel<string>();

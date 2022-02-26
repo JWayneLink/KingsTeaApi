@@ -1,4 +1,6 @@
 using Autofac;
+using Autofac.Extensions.DependencyInjection;
+using KingsTeaApp.Filter;
 using KTA.Data.Repository;
 using KTA.Data.Service;
 using KTA.Model.Interface;
@@ -51,26 +53,20 @@ namespace KingsTeaApp
             // Configuring EF Core
             services.AddDbContextFactory<KTADbContext>(kta => kta.UseSqlServer(Configuration["DefaultConnection"]));
 
-            #region 設定直接忽略ModelState.IsValid的檢查
-            //services.Configure<ApiBehaviorOptions>(options =>
-            //{
-            //    options.SuppressModelStateInvalidFilter = true;
-            //});
-            #endregion
-
             // 1. 建立Autofac容器
             ContainerBuilder builder = new ContainerBuilder();
 
             // 2.註冊型別(可限制創建物件生命週期)
-            builder.Register(c => new CustomerService(new HttpClient())).As<ICustomerService>().InstancePerLifetimeScope();
- 
+            builder.RegisterType<CustomerService>().As<ICustomerService>().InstancePerLifetimeScope();
+            builder.Populate(services);
+
             // 3.建立IContainer
             IContainer container = builder.Build();
 
             // Add http client CustomerService
             services.AddHttpClient<ICustomerService, CustomerService>(client =>
             {
-                client.BaseAddress = new Uri(Configuration["PlaceholderUsers"]);
+                client.BaseAddress = new Uri(Configuration["PlaceholderUsers"]);                
             })
             .AddPolicyHandler(GetRetryPolicy())
             .AddPolicyHandler(GetCircuitBreakerPolicy())
@@ -84,6 +80,15 @@ namespace KingsTeaApp
             .AddPolicyHandler(GetRetryPolicy())
             .AddPolicyHandler(GetCircuitBreakerPolicy())
             .SetHandlerLifetime(TimeSpan.FromMinutes(5));
+
+            // Register filter
+            services.AddScoped<ValidationFilterAttribute>();
+
+            // 設定藉由filter判定ModelState.IsValid的檢查
+            services.Configure<ApiBehaviorOptions>(options =>
+            {
+                options.SuppressModelStateInvalidFilter = true;
+            });
         }
 
         static IAsyncPolicy<HttpResponseMessage> GetRetryPolicy()

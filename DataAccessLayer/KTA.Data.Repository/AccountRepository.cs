@@ -62,6 +62,14 @@ namespace KTA.Data.Repository
             }
         }
 
+        public async Task<AccountEntity> GetAccountByEmail(string account, string email)
+        {
+            using (var context = _ctx.CreateDbContext())
+            {
+                return await context.Account.Where(x => x.Account.Equals(account) && x.Email.Equals(email)).FirstOrDefaultAsync();
+            }
+        }
+
         public async Task<int> UpdateAsync(AccountEntity item)
         {
             using (var context = _ctx.CreateDbContext())

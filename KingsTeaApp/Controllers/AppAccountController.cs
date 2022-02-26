@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Threading.Tasks;
 
 
@@ -25,7 +26,8 @@ namespace KingsTeaApp.Controllers
         }
 
         [HttpPost, Route("AddAccountAsync")]
-        [ValidateModel]
+        //[ValidateModel]
+        [ServiceFilter(typeof(ValidationFilterAttribute))]
         public async Task<ApiResultModel<string>> AddAccountAsync(AccountDto addAccountDto)
         {
             ApiResultModel<string> result = new ApiResultModel<string>();
@@ -53,7 +55,7 @@ namespace KingsTeaApp.Controllers
         }
 
         [HttpPut, Route("UpdateAccountAsync")]
-        [ValidateModel]
+        [ServiceFilter(typeof(ValidationFilterAttribute))]
         public async Task<ApiResultModel<string>> UpdateAccountAsync(AccountDto updateAccountDto)
         {
             ApiResultModel<string> result = new ApiResultModel<string>();
@@ -81,7 +83,7 @@ namespace KingsTeaApp.Controllers
         }
 
         [HttpDelete, Route("DeleteAccountAsync")]
-        [ValidateModel]
+        [ServiceFilter(typeof(ValidationFilterAttribute))]
         public async Task<ApiResultModel<string>> DeleteAccountAsync(AccountDto deleteAccountDto)
         {
             ApiResultModel<string> result = new ApiResultModel<string>();
@@ -167,10 +169,39 @@ namespace KingsTeaApp.Controllers
         [HttpPost, Route("AccountLoginAsync")]
         public async Task<ApiResultModel<string>> AccountLoginAsync(AccountDto loginDto)
         {
+
             ApiResultModel<string> result = new ApiResultModel<string>();
             try
             {
                 ServiceResultModel<string> serviceResult = await this._accountService.AuthValidation(loginDto);
+                if (!serviceResult.IsSuccess)
+                {
+                    // service exception
+                    result.IsSuccess = serviceResult.IsSuccess;
+                    result.Message = serviceResult.Message;
+                    return result;
+                }
+
+                result.IsSuccess = serviceResult.IsSuccess;
+                result.Message = serviceResult.Message;
+                result.Data = new List<string>();
+                return result;
+            }
+            catch (Exception ex)
+            {
+                result.IsSuccess = false;
+                result.Message = ex.Message + ex.StackTrace;
+                return result;
+            }
+        }
+
+        [HttpPost, Route("ForgotPasswordAsync")]
+        public async Task<ApiResultModel<string>> ForgotPasswordAsync(AccountDto forgotPasswordDto)
+        {
+            ApiResultModel<string> result = new ApiResultModel<string>();
+            try
+            {
+                ServiceResultModel<string> serviceResult = await this._accountService.ForgotPassword(forgotPasswordDto.Account, forgotPasswordDto.Email);
                 if (!serviceResult.IsSuccess)
                 {
                     // service exception

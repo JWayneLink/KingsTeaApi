@@ -91,7 +91,7 @@ namespace KTA.Model.Services
                 }
 
                 existItem.Name = dtoItem.Name;
-                existItem.Pwd = dtoItem.Pwd;
+                //existItem.Pwd = dtoItem.Pwd;
                 existItem.Email = dtoItem.Email;
                 existItem.Phone = dtoItem.Phone;
                 existItem.Udt = this._dateTimeService.GetCurrentTime();
@@ -188,6 +188,65 @@ namespace KTA.Model.Services
 
                 serviceResult.IsSuccess = true;
                 serviceResult.Message = $"Account {dtoItem.Account} login success.";
+                serviceResult.Data = new List<string>();
+                return serviceResult;
+            }
+            catch (Exception ex)
+            {
+                serviceResult.IsSuccess = false;
+                serviceResult.Message = $"{ex.Message} {ex.StackTrace}";
+                serviceResult.Data = new List<string>();
+                return serviceResult;
+            }
+        }
+
+        public async Task<ServiceResultModel<string>> ForgotPassword(string account, string email)
+        {
+            ServiceResultModel<string> serviceResult = new ServiceResultModel<string>();
+            try
+            {
+                AccountEntity existItem = await this._accountRepository.GetAccountByEmail(account, email);
+                if (existItem == null)
+                {
+                    serviceResult.IsSuccess = false;
+                    serviceResult.Message = $"{account} {AccountConstant.AccountQueryDataNotFound}. Please Sign up new account.";
+                    serviceResult.Data = new List<string>();
+                    return serviceResult;
+                }
+
+                System.Net.Mail.MailMessage mailMsg = new System.Net.Mail.MailMessage();
+                mailMsg.From = new System.Net.Mail.MailAddress("kingsteakingstea@gmail.com");
+                mailMsg.To.Add(email); //設定收件者Email
+                //mailMsg.Bcc.Add("密件副本的收件者Mail"); //加入密件副本的Mail          
+                mailMsg.Subject = "Kings Tea Shop Account New System Password";
+                string sysPassword = Guid.NewGuid().ToString();
+                mailMsg.Body = $"<h1>Password:  {sysPassword} </h1>"; //設定信件內容
+                mailMsg.IsBodyHtml = true; //是否使用html格式
+                System.Net.Mail.SmtpClient MySMTP = new System.Net.Mail.SmtpClient();
+                MySMTP.Credentials = new System.Net.NetworkCredential("kingsteakingstea@gmail.com", "Kingstea1234");
+
+                MySMTP.Host = "smtp.gmail.com"; //設定smtp Server
+                MySMTP.Port = 25; //設定Port
+                MySMTP.EnableSsl = true; //gmail預設開啟驗證
+               
+                try
+                {
+                    MySMTP.Send(mailMsg);
+                    
+                }
+                catch (Exception ex)
+                {
+                    ex.ToString();
+                }
+                finally
+                {
+                    //釋放資源
+                    mailMsg.Dispose();
+                    MySMTP.Dispose();
+                }
+
+                serviceResult.IsSuccess = true;
+                serviceResult.Message = $"Please receive E-mail for getting new system password";
                 serviceResult.Data = new List<string>();
                 return serviceResult;
             }

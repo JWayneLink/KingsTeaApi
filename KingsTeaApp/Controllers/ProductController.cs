@@ -25,7 +25,7 @@ namespace KingsTeaApp.Controllers
         }
 
         [HttpPost, Route("AddProductAsync")]
-        [ValidateModel]
+        [ServiceFilter(typeof(ValidationFilterAttribute))]
         public async Task<ApiResultModel<string>> AddProductAsync(ProductDto addProductDto)
         {
             ApiResultModel<string> result = new ApiResultModel<string>();
@@ -53,7 +53,7 @@ namespace KingsTeaApp.Controllers
         }
 
         [HttpPut, Route("UpdateProductAsync")]
-        [ValidateModel]
+        [ServiceFilter(typeof(ValidationFilterAttribute))]
         public async Task<ApiResultModel<string>> UpdateProductAsync(ProductDto updateProductDto)
         {
             ApiResultModel<string> result = new ApiResultModel<string>();
@@ -81,7 +81,7 @@ namespace KingsTeaApp.Controllers
         }
 
         [HttpDelete, Route("DeleteProductAsync")]
-        [ValidateModel]
+        [ServiceFilter(typeof(ValidationFilterAttribute))]
         public async Task<ApiResultModel<string>> DeleteProductAsync(string pn)
         {
             ApiResultModel<string> result = new ApiResultModel<string>();

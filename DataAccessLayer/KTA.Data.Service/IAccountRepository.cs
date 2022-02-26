@@ -10,5 +10,6 @@ namespace KTA.Data.Service
     public interface IAccountRepository: IRepositoryBase<AccountEntity>
     {
         Task<AccountEntity> GetSingleItemAsync(string account);
+        Task<AccountEntity> GetAccountByEmail(string account, string email);
     }
 }
