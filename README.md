@@ -32,6 +32,12 @@
         services.AddDbContextFactory<KTADbContext>(kta => kta.UseSqlServer(Configuration["DefaultConnection"]));            
     }
 ```
+
+<H4>Database table schema design</H4>
+
+![KingsTeaAppDatabaseEntity](https://user-images.githubusercontent.com/40432032/155993230-4498c5df-4db5-4258-ab88-bb8ad29dd6ec.png)
+
+
 <hr>
     
 <H4>IoC Framework</H4>
@@ -77,6 +83,146 @@
         }
     }
 ```
+```c#
+    // 1. 建立Autofac容器
+    ContainerBuilder builder = new ContainerBuilder();
+
+    // 2.註冊型別(可限制創建物件生命週期)
+    builder.RegisterType<CustomerService>().As<ICustomerService>().InstancePerLifetimeScope();
+    builder.Populate(services);
+
+    // 3.建立IContainer
+    IContainer container = builder.Build();
+```
+
+<hr>
+
+<H4>Http Policy Extensions Register</H4>
+<ul>
+  <li>
+    Install-Package Microsoft.Extensions.Http -Version 5.0.0
+  </li>
+    <li>
+    Install-Package Microsoft.Extensions.Http.Polly -Version 2.2.0
+  </li>   
+</ul>
+
+```c#
+    // Add http client CustomerService
+    services.AddHttpClient<ICustomerService, CustomerService>(client =>
+    {
+        client.BaseAddress = new Uri(Configuration["PlaceholderUsers"]);                
+    })
+    .AddPolicyHandler(GetRetryPolicy())
+    .AddPolicyHandler(GetCircuitBreakerPolicy())
+    .SetHandlerLifetime(TimeSpan.FromMinutes(5));
+
+    // Add http client ProductService
+    services.AddHttpClient<IProductService, ProductService>(client =>
+    {
+        client.BaseAddress = new Uri(Configuration["PlaceholderAlbums"]);
+    })
+    .AddPolicyHandler(GetRetryPolicy())
+    .AddPolicyHandler(GetCircuitBreakerPolicy())
+    .SetHandlerLifetime(TimeSpan.FromMinutes(5));
+            
+    static IAsyncPolicy<HttpResponseMessage> GetRetryPolicy()
+    {
+        return HttpPolicyExtensions
+            .HandleTransientHttpError()
+            .OrResult(msg => msg.StatusCode == System.Net.HttpStatusCode.NotFound)
+            .WaitAndRetryAsync(6, retryAttempt => TimeSpan.FromSeconds(Math.Pow(2, retryAttempt)));
+    }
+
+    static IAsyncPolicy<HttpResponseMessage> GetCircuitBreakerPolicy()
+    {
+        return HttpPolicyExtensions
+            .HandleTransientHttpError()
+            .CircuitBreakerAsync(5, TimeSpan.FromSeconds(30));
+    }
+```
+<hr>
+
+<H4>Http Policy Extensions Register</H4>
+<ul>
+  <li>
+    Install-Package Microsoft.AspNet.WebApi.Core -Version 5.2.7
+  </li>
+</ul>
+
+```c#
+    // Register filter
+    services.AddScoped<ValidationFilterAttribute>();
+
+    // 設定藉由filter判定ModelState.IsValid的檢查
+    services.Configure<ApiBehaviorOptions>(options =>
+    {
+        options.SuppressModelStateInvalidFilter = true;
+    });
+    
+    public class ValidationFilterAttribute : IActionFilter
+    {
+        public void OnActionExecuting(ActionExecutingContext context)
+        {           
+            if (!context.ModelState.IsValid)
+            {             
+                if (
+                    context.ModelState.Values.FirstOrDefault() != null && 
+                    context.ModelState.Values.First().Errors.FirstOrDefault() != null
+                )
+                {
+                    // context.ModelState.Values.First().Errors.First().ErrorMessage
+                    string valideErrorMsg = context.ModelState.Values.First().Errors.First().ErrorMessage;
+
+                    // 既使ModelState.InValid,可回傳自訂的StatusCode & response JSON
+                    JObject jObj = new JObject();
+                    jObj["isSuccess"] = false;
+                    jObj["message"] = valideErrorMsg;
+                    jObj["data"] = string.Empty;
+                    string json = JsonConvert.SerializeObject(jObj);
+
+                    context.Result = new ContentResult()
+                    {
+                        StatusCode = (int)System.Net.HttpStatusCode.OK,
+                        Content = json,
+                        ContentType = "application/json"
+                    };
+                }
+            }
+        }
+        
+        public void OnActionExecuted(ActionExecutedContext context)
+        {
+        }
+    }
+```
+
+<hr>
+
+<H4>Allow CORS settings</H4>
+
+```c#
+    // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+    public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+    {
+        app.UseAuthorization();
+
+        // allow CORS
+        app.UseCors(options => options
+        .AllowAnyOrigin()
+        .AllowAnyMethod()
+        .AllowAnyHeader()
+        //.SetIsOriginAllowed(origin => true) // allow any origin
+        //.AllowCredentials() // allow credentials
+         );
+
+        app.UseEndpoints(endpoints =>
+        {
+            endpoints.MapControllers();
+        });
+    }
+```
+
 <hr>
 
 <H4>Inheritance Design Pattern - Repository</H4>
@@ -189,8 +335,28 @@
         public async Task<ApiResultModel<SalesOrderEntity>> GetAllSalesOrdersAsync() {...}
 
  ```
+
+</hr>
  
- ![image](https://user-images.githubusercontent.com/40432032/154804122-877f96e0-2d1f-4ac0-bdd7-a0e38d327a86.png)
- 
- </hr>
+![image](https://user-images.githubusercontent.com/40432032/155993601-0fc29aec-11bf-49b3-9232-a0925ce61265.png)
+
+
+<H4>AppAccount Http Methods</H4>
+
+![image](https://user-images.githubusercontent.com/40432032/155993632-99c7e3f8-a932-488e-bb35-8cffb0d66e3f.png)
+
+
+<H4>Customer Http Methods</H4>
+
+![image](https://user-images.githubusercontent.com/40432032/155993690-d5b2b1cc-d5f8-4b56-bdfa-7eea50d1bae2.png)
+
+
+<H4>Product Http Methods</H4>
+
+![image](https://user-images.githubusercontent.com/40432032/155993756-d8c86d5c-2fa4-4774-b180-95cc6b070ddf.png)
+
+
+<H4>SalesOrder Http Methods</H4>
+
+![image](https://user-images.githubusercontent.com/40432032/155993857-e03968f7-1a2f-4015-9d12-3b86d6589da2.png)
 
