@@ -9,6 +9,8 @@ namespace KTA.Data.Service
 {
     public interface ISalesOrderRepository : IRepositoryBase<SalesOrderEntity>
     {
-        Task<SalesOrderEntity> GetSingleItemAsync(string so);
+        Task<IEnumerable<SalesOrderEntity>> GetSingleItemAsync(string so);
+        Task<int> AddBulkAsync(List<SalesOrderEntity> items);
+        Task<List<string>> GetSalesOrderListAsync(string so);
     }
 }

@@ -84,12 +84,12 @@ namespace KingsTeaApp.Controllers
 
         [HttpDelete, Route("DeleteAccountAsync")]
         [ServiceFilter(typeof(ValidationFilterAttribute))]
-        public async Task<ApiResultModel<string>> DeleteAccountAsync(AccountDto deleteAccountDto)
+        public async Task<ApiResultModel<string>> DeleteAccountAsync(string accountId)
         {
             ApiResultModel<string> result = new ApiResultModel<string>();
             try
             {
-                ServiceResultModel<string> serviceResult = await this._accountService.DeleteAsync(deleteAccountDto);
+                ServiceResultModel<string> serviceResult = await this._accountService.DeleteAsync(accountId);
                 if (!serviceResult.IsSuccess)
                 {
                     // service exception

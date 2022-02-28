@@ -39,6 +39,36 @@ namespace KingsTeaApp.Controllers
 
                 result.IsSuccess = true;
                 result.Message = serviceResult.Message;
+                result.Data = serviceResult.Data;
+                return result;
+            }
+            catch (Exception ex)
+            {
+                result.IsSuccess = false;
+                result.Message = ex.Message + ex.StackTrace;
+                return result;
+            }
+        }
+
+        [HttpPost, Route("AddSalesOrderBulkAsync")]
+        [ServiceFilter(typeof(ValidationFilterAttribute))]
+        public async Task<ApiResultModel<string>> AddSalesOrderBulkAsync(List<SalesOrderDto> addSalesOrderDtos)
+        {
+            ApiResultModel<string> result = new ApiResultModel<string>();
+            try
+            {
+                ServiceResultModel<string> serviceResult = await this._salesOrderService.AddBulkAsync(addSalesOrderDtos);
+                if (!serviceResult.IsSuccess)
+                {
+                    // service exception
+                    result.IsSuccess = serviceResult.IsSuccess;
+                    result.Message = serviceResult.Message;
+                    return result;
+                }
+
+                result.IsSuccess = true;
+                result.Message = serviceResult.Message;
+                result.Data = serviceResult.Data;
                 return result;
             }
             catch (Exception ex)
@@ -140,6 +170,90 @@ namespace KingsTeaApp.Controllers
             try
             {
                 ServiceResultModel<SalesOrderEntity> serviceResult = await this._salesOrderService.GetAllItemsAsync();
+                if (!serviceResult.IsSuccess)
+                {
+                    // service exception
+                    result.IsSuccess = serviceResult.IsSuccess;
+                    result.Message = serviceResult.Message;
+                    return result;
+                }
+
+                result.IsSuccess = serviceResult.IsSuccess;
+                result.Message = serviceResult.Message;
+                result.Data = serviceResult.Data;
+                return result;
+            }
+            catch (Exception ex)
+            {
+                result.IsSuccess = false;
+                result.Message = ex.Message + ex.StackTrace;
+                return result;
+            }
+        }
+
+        [HttpGet, Route("GetAllSalesOrdersDetailAsync")]
+        public async Task<ApiResultModel<SalesOrderDetailDto>> GetAllSalesOrdersDetailAsync()
+        {
+            ApiResultModel<SalesOrderDetailDto> result = new ApiResultModel<SalesOrderDetailDto>();
+            try
+            {
+                ServiceResultModel<SalesOrderDetailDto> serviceResult = await this._salesOrderService.GetAllItemsDetailAsync();
+                if (!serviceResult.IsSuccess)
+                {
+                    // service exception
+                    result.IsSuccess = serviceResult.IsSuccess;
+                    result.Message = serviceResult.Message;
+                    return result;
+                }
+
+                result.IsSuccess = serviceResult.IsSuccess;
+                result.Message = serviceResult.Message;
+                result.Data = serviceResult.Data;
+                return result;
+            }
+            catch (Exception ex)
+            {
+                result.IsSuccess = false;
+                result.Message = ex.Message + ex.StackTrace;
+                return result;
+            }
+        }
+
+        [HttpGet, Route("GetAllSalesOrdersDetailBySoAsync")]
+        public async Task<ApiResultModel<SalesOrderDetailDto>> GetAllSalesOrdersDetailBySoAsync(string so)
+        {
+            ApiResultModel<SalesOrderDetailDto> result = new ApiResultModel<SalesOrderDetailDto>();
+            try
+            {
+                ServiceResultModel<SalesOrderDetailDto> serviceResult = await this._salesOrderService.GetAllItemsDetailAsync(so);
+                if (!serviceResult.IsSuccess)
+                {
+                    // service exception
+                    result.IsSuccess = serviceResult.IsSuccess;
+                    result.Message = serviceResult.Message;
+                    return result;
+                }
+
+                result.IsSuccess = serviceResult.IsSuccess;
+                result.Message = serviceResult.Message;
+                result.Data = serviceResult.Data;
+                return result;
+            }
+            catch (Exception ex)
+            {
+                result.IsSuccess = false;
+                result.Message = ex.Message + ex.StackTrace;
+                return result;
+            }
+        }
+
+        [HttpGet, Route("GetSalesOrderListAsync")]
+        public async Task<ApiResultModel<string>> GetSalesOrderListAsync(string so)
+        {
+            ApiResultModel<string> result = new ApiResultModel<string>();
+            try
+            {
+                ServiceResultModel<string> serviceResult = await this._salesOrderService.GetSalesOrderListAsync(so);
                 if (!serviceResult.IsSuccess)
                 {
                     // service exception

@@ -49,23 +49,22 @@ namespace KTA.Model.Services
             }
         }        
 
-        public async Task<ServiceResultModel<string>> DeleteAsync(AccountDto dtoItem)
+        public async Task<ServiceResultModel<string>> DeleteAsync(string account)
         {
             ServiceResultModel<string> serviceResult = new ServiceResultModel<string>();
             try
-            {
-                var deleteItem = this.ConvertAccountEntity(dtoItem);
-                AccountEntity existItem = await this._accountRepository.GetSingleItemAsync(deleteItem);
+            {                
+                AccountEntity existItem = await this._accountRepository.GetSingleItemAsync(account);
                 if (existItem == null)
                 {
                     serviceResult.IsSuccess = true;
-                    serviceResult.Message = $"{deleteItem.Account} {AccountConstant.AccountDeleteDataNotFound}";
+                    serviceResult.Message = $"{account} {AccountConstant.AccountDeleteDataNotFound}";
                     return serviceResult;
                 }
                 
                 await this._accountRepository.DeleteAsync(existItem);
                 serviceResult.IsSuccess = true;
-                serviceResult.Message = $"{deleteItem.Account} {AccountConstant.AccountDeleteOK}";
+                serviceResult.Message = $"{account} {AccountConstant.AccountDeleteOK}";
                 return serviceResult;
             }
             catch (Exception ex)

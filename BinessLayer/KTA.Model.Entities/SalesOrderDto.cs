@@ -9,7 +9,6 @@ namespace KTA.Model.Entities
 {
     public class SalesOrderDto
     {
-        [Required]
         public string SO { get; set; }
         public string Pn { get; set; }
         public string CustId { get; set; }

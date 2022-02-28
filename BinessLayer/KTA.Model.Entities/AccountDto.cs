@@ -16,6 +16,8 @@ namespace KTA.Model.Entities
         public string Pwd { get; set; }
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
+        [DataType(DataType.PhoneNumber)]            
+        [RegularExpression(@"\d{2,4}-?\d{3,4}-?\d{3,4}(#\d{1,4})?", ErrorMessage = "Phone format is invalid")]
         public string Phone { get; set; }
         public DateTime Cdt { get; set; }
         public DateTime Udt { get; set; }

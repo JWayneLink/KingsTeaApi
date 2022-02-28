@@ -28,6 +28,16 @@ namespace KTA.Data.Repository
             }
         }
 
+        public async Task<int> AddBulkAsync(List<SalesOrderEntity> items)
+        {
+            using (var context = _ctx.CreateDbContext())
+            {
+                await context.SalesOrder.AddRangeAsync(items);
+
+                return await context.SaveChangesAsync();
+            }
+        }
+
         public async Task<int> DeleteAsync(SalesOrderEntity item)
         {
             using (var context = _ctx.CreateDbContext())
@@ -54,11 +64,11 @@ namespace KTA.Data.Repository
             }
         }
 
-        public async Task<SalesOrderEntity> GetSingleItemAsync(string so)
+        public async Task<IEnumerable<SalesOrderEntity>> GetSingleItemAsync(string so)
         {
             using (var context = _ctx.CreateDbContext())
             {
-                return await context.SalesOrder.Where(x => x.SO.Equals(so)).FirstOrDefaultAsync();
+                return await context.SalesOrder.Where(x => x.SO.Equals(so)).ToListAsync();
             }
         }
 
@@ -69,6 +79,14 @@ namespace KTA.Data.Repository
                 context.Entry(item).State = EntityState.Modified;
 
                 return await context.SaveChangesAsync();
+            }
+        }
+
+        public async Task<List<string>> GetSalesOrderListAsync(string so)
+        {
+            using (var context = _ctx.CreateDbContext())
+            {
+                return await context.SalesOrder.Where(x => x.SO.StartsWith(so)).Select(x=>x.SO).Take(50).ToListAsync();
             }
         }
     }
