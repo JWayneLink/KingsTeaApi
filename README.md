@@ -1,6 +1,8 @@
 # KingsTea
 <H3> Kings Tea Application .NET 5 Backend WEB API </H3>
 
+- IDE: Visual Studio 2022
+
 <H4>MSSQL Database</H4>
 <ul>
   <li>
@@ -143,7 +145,7 @@
 ```
 <hr>
 
-<H4>Http Policy Extensions Register</H4>
+<H4>Customized filter attribute register</H4>
 <ul>
   <li>
     Install-Package Microsoft.AspNet.WebApi.Core -Version 5.2.7
