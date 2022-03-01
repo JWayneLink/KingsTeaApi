@@ -1,6 +1,8 @@
 # KingsTea
 <H3> Kings Tea Application .NET 5 Backend WEB API </H3>
 
+- IDE: Visual Studio 2022
+
 <H4>MSSQL Database</H4>
 <ul>
   <li>
@@ -10,6 +12,9 @@
     Install-Package Microsoft.EntityFrameworkCore.SqlServer -Version 5.0.1
   </li>   
 </ul>
+
+- TEST1
+- TEST2
 
 ```c#
     // This method gets called by the runtime. Use this method to add services to the container.
