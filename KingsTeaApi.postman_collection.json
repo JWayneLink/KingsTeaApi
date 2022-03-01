@@ -136,7 +136,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"account\": \"T\",\r\n  \"name\": \"\",\r\n  \"pwd\": \"\",\r\n  \"email\": \"\",\r\n  \"phone\": \"\",\r\n  \"cdt\": \"2022-02-21T06:02:51.147Z\",\r\n  \"udt\": \"2022-02-21T06:02:51.147Z\"\r\n}",
+							"raw": "",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -144,7 +144,7 @@
 							}
 						},
 						"url": {
-							"raw": "https://localhost:44356/v1/api/AppAccount/DeleteAccountAsync",
+							"raw": "https://localhost:44356/v1/api/AppAccount/DeleteAccountAsync?accountId=AA",
 							"protocol": "https",
 							"host": [
 								"localhost"
@@ -155,6 +155,12 @@
 								"api",
 								"AppAccount",
 								"DeleteAccountAsync"
+							],
+							"query": [
+								{
+									"key": "accountId",
+									"value": "AA"
+								}
 							]
 						}
 					},
@@ -392,7 +398,7 @@
 					"response": []
 				},
 				{
-					"name": "New Request",
+					"name": "DeleteCustomerAsync",
 					"request": {
 						"method": "DELETE",
 						"header": [],
@@ -441,6 +447,142 @@
 								{
 									"key": "custId",
 									"value": "A"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "SalesOrder",
+			"item": [
+				{
+					"name": "AddSalesOrderAsync",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"so\": \"string\",\r\n  \"pn\": \"string\",\r\n  \"custId\": \"string\",\r\n  \"qty\": 0,\r\n  \"status\": \"string\",\r\n  \"creator\": \"string\",\r\n  \"cdt\": \"2022-02-26T10:37:26.705Z\",\r\n  \"udt\": \"2022-02-26T10:37:26.705Z\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:44356/v1/api/SalesOrder/AddSalesOrderAsync",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44356",
+							"path": [
+								"v1",
+								"api",
+								"SalesOrder",
+								"AddSalesOrderAsync"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetAllSalesOrdersAsync",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:44356/v1/api/SalesOrder/GetAllSalesOrdersAsync",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44356",
+							"path": [
+								"v1",
+								"api",
+								"SalesOrder",
+								"GetAllSalesOrdersAsync"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetAllSalesOrdersDetailAsync",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:44356/v1/api/SalesOrder/GetAllSalesOrdersDetailAsync",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44356",
+							"path": [
+								"v1",
+								"api",
+								"SalesOrder",
+								"GetAllSalesOrdersDetailAsync"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetAllSalesOrdersDetailBySoAsync",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:44356/v1/api/SalesOrder/GetAllSalesOrdersDetailBySoAsync?so=",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44356",
+							"path": [
+								"v1",
+								"api",
+								"SalesOrder",
+								"GetAllSalesOrdersDetailBySoAsync"
+							],
+							"query": [
+								{
+									"key": "so",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetSalesOrderListAsync",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:44356/v1/api/SalesOrder/GetSalesOrderListAsync?so=KTA-20220227",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44356",
+							"path": [
+								"v1",
+								"api",
+								"SalesOrder",
+								"GetSalesOrderListAsync"
+							],
+							"query": [
+								{
+									"key": "so",
+									"value": "KTA-20220227"
 								}
 							]
 						}
