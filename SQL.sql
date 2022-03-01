@@ -106,6 +106,21 @@ insert into CUSTOMER select 'CX-010','Clementina DuBuque','Miss.','Lebsackbury, 
 
 
 /*
+INSERT PRODUCT
+insert into PRODUCT select 'PN-001','Batch Brew','Coffee','L','1','1','450.00',getdate(),getdate()
+insert into PRODUCT select 'PN-002','Caffe Latte','Coffee','M','2','2','480.00',getdate(),getdate()
+insert into PRODUCT select 'PN-003','Cappuccino','Coffee','S','3','3','460.00',getdate(),getdate()
+insert into PRODUCT select 'PN-004','Caffe Mocha','Coffee','L','4','1','490.00',getdate(),getdate()
+insert into PRODUCT select 'PN-005','Strawberries & Cream Frappuccino','Juice','M','5','5','380.00',getdate(),getdate()
+insert into PRODUCT select 'PN-006','Pure Matcha Frappuccino','Tea','S','2','3','360.00',getdate(),getdate()
+insert into PRODUCT select 'PN-007','Cookies & Cream Frappuccino','Caffeine-free','S','5','5','390.00',getdate(),getdate()
+insert into PRODUCT select 'PN-008','Iced Shaken Black Tea Lemonade','Juice','S','4','1','350.00',getdate(),getdate()
+insert into PRODUCT select 'PN-009','Iced Shaken Green Tea Lemonade','Tea','L','1','4','370.00',getdate(),getdate()
+insert into PRODUCT select 'PN-010','Iced Shaken Strawberry Green Tea Lemonade','Tea','L','5','5','370.00',getdate(),getdate()
+*/
+
+
+/*
 truncate table ACCOUNT
 truncate table PRODUCT
 truncate table CUSTOMER
