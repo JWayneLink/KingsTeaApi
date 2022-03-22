@@ -89,3 +89,8 @@ C:\Users\iec090297\source\repos\KingsTea\KingsTeaApp\obj\Debug\net5.0\KingsTeaAp
 C:\Users\iec090297\source\repos\KingsTea\KingsTeaApp\bin\Debug\net5.0\Microsoft.Extensions.Http.Polly.dll
 C:\Users\iec090297\source\repos\KingsTea\KingsTeaApp\bin\Debug\net5.0\Polly.dll
 C:\Users\iec090297\source\repos\KingsTea\KingsTeaApp\bin\Debug\net5.0\Polly.Extensions.Http.dll
+C:\Users\iec090297\source\repos\KingsTea\KingsTeaApp\bin\Debug\net5.0\System.Formats.Asn1.dll
+C:\Users\iec090297\source\repos\KingsTea\KingsTeaApp\bin\Debug\net5.0\System.Security.Cryptography.Pkcs.dll
+C:\Users\iec090297\source\repos\KingsTea\KingsTeaApp\bin\Debug\net5.0\runtimes\win\lib\netcoreapp3.1\System.Security.Cryptography.Pkcs.dll
+C:\Users\iec090297\source\repos\KingsTea\KingsTeaApp\bin\Debug\net5.0\KTA.Model.Library.dll
+C:\Users\iec090297\source\repos\KingsTea\KingsTeaApp\bin\Debug\net5.0\KTA.Model.Library.pdb

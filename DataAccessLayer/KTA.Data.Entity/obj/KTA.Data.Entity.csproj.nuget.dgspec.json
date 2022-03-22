@@ -24,7 +24,6 @@
           "net5.0"
         ],
         "sources": {
-          "http://taotest:123/FISNuGetServer2/nuget": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -81,7 +80,6 @@
           "net5.0"
         ],
         "sources": {
-          "http://taotest:123/FISNuGetServer2/nuget": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -151,7 +149,6 @@
           "net5.0"
         ],
         "sources": {
-          "http://taotest:123/FISNuGetServer2/nuget": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {

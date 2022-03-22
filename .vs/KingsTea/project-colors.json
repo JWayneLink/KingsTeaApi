@@ -55,7 +55,12 @@
       "ProjectGuid": "b71ca907-16aa-421e-a6b9-eba7f1040179",
       "DisplayName": "KTA.Model.ExceptionHelper",
       "ColorIndex": 9
+    },
+    "b87aa698-10ee-4da8-a31c-1fe8d275e57c": {
+      "ProjectGuid": "b87aa698-10ee-4da8-a31c-1fe8d275e57c",
+      "DisplayName": "KTA.Model.Library",
+      "ColorIndex": 10
     }
   },
-  "NextColorIndex": 10
+  "NextColorIndex": 11
 }

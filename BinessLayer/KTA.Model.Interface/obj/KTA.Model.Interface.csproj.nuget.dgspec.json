@@ -24,7 +24,6 @@
           "net5.0"
         ],
         "sources": {
-          "http://taotest:123/FISNuGetServer2/nuget": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -87,7 +86,6 @@
           "net5.0"
         ],
         "sources": {
-          "http://taotest:123/FISNuGetServer2/nuget": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -144,7 +142,6 @@
           "net5.0"
         ],
         "sources": {
-          "http://taotest:123/FISNuGetServer2/nuget": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -169,6 +166,12 @@
       "frameworks": {
         "net5.0": {
           "targetAlias": "net5.0",
+          "dependencies": {
+            "System.Security.Cryptography.Pkcs": {
+              "target": "Package",
+              "version": "[6.0.0, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -208,7 +211,6 @@
           "net5.0"
         ],
         "sources": {
-          "http://taotest:123/FISNuGetServer2/nuget": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -278,7 +280,6 @@
           "net5.0"
         ],
         "sources": {
-          "http://taotest:123/FISNuGetServer2/nuget": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {

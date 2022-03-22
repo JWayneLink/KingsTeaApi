@@ -24,7 +24,6 @@
           "net5.0"
         ],
         "sources": {
-          "http://taotest:123/FISNuGetServer2/nuget": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -81,7 +80,6 @@
           "net5.0"
         ],
         "sources": {
-          "http://taotest:123/FISNuGetServer2/nuget": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -144,7 +142,6 @@
           "net5.0"
         ],
         "sources": {
-          "http://taotest:123/FISNuGetServer2/nuget": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -201,7 +198,6 @@
           "net5.0"
         ],
         "sources": {
-          "http://taotest:123/FISNuGetServer2/nuget": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -226,6 +222,78 @@
       "frameworks": {
         "net5.0": {
           "targetAlias": "net5.0",
+          "dependencies": {
+            "System.Security.Cryptography.Pkcs": {
+              "target": "Package",
+              "version": "[6.0.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.100\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\iec090297\\source\\repos\\KingsTea\\BinessLayer\\KTA.Model.Library\\KTA.Model.Library.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\iec090297\\source\\repos\\KingsTea\\BinessLayer\\KTA.Model.Library\\KTA.Model.Library.csproj",
+        "projectName": "KTA.Model.Library",
+        "projectPath": "C:\\Users\\iec090297\\source\\repos\\KingsTea\\BinessLayer\\KTA.Model.Library\\KTA.Model.Library.csproj",
+        "packagesPath": "C:\\Users\\iec090297\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\iec090297\\source\\repos\\KingsTea\\BinessLayer\\KTA.Model.Library\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\iec090297\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {
+              "C:\\Users\\iec090297\\source\\repos\\KingsTea\\BinessLayer\\KTA.Model.Interface\\KTA.Model.Interface.csproj": {
+                "projectPath": "C:\\Users\\iec090297\\source\\repos\\KingsTea\\BinessLayer\\KTA.Model.Interface\\KTA.Model.Interface.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "dependencies": {
+            "System.Security.Cryptography.Pkcs": {
+              "target": "Package",
+              "version": "[6.0.0, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -265,7 +333,6 @@
           "net5.0"
         ],
         "sources": {
-          "http://taotest:123/FISNuGetServer2/nuget": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -280,6 +347,9 @@
               },
               "C:\\Users\\iec090297\\source\\repos\\KingsTea\\BinessLayer\\KTA.Model.Interface\\KTA.Model.Interface.csproj": {
                 "projectPath": "C:\\Users\\iec090297\\source\\repos\\KingsTea\\BinessLayer\\KTA.Model.Interface\\KTA.Model.Interface.csproj"
+              },
+              "C:\\Users\\iec090297\\source\\repos\\KingsTea\\BinessLayer\\KTA.Model.Library\\KTA.Model.Library.csproj": {
+                "projectPath": "C:\\Users\\iec090297\\source\\repos\\KingsTea\\BinessLayer\\KTA.Model.Library\\KTA.Model.Library.csproj"
               },
               "C:\\Users\\iec090297\\source\\repos\\KingsTea\\DataAccessLayer\\KTA.Data.Entity\\KTA.Data.Entity.csproj": {
                 "projectPath": "C:\\Users\\iec090297\\source\\repos\\KingsTea\\DataAccessLayer\\KTA.Data.Entity\\KTA.Data.Entity.csproj"
@@ -344,7 +414,6 @@
           "net5.0"
         ],
         "sources": {
-          "http://taotest:123/FISNuGetServer2/nuget": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -414,7 +483,6 @@
           "net5.0"
         ],
         "sources": {
-          "http://taotest:123/FISNuGetServer2/nuget": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -471,7 +539,6 @@
           "net5.0"
         ],
         "sources": {
-          "http://taotest:123/FISNuGetServer2/nuget": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {

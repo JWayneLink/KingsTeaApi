@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using KTA.Model.Library;
 
 namespace KTA.Model.Services
 {
@@ -15,11 +16,13 @@ namespace KTA.Model.Services
     {
         private readonly IDateTimeService _dateTimeService;
         private readonly IAccountRepository _accountRepository;
+        private IEncryptService _encryptService;
 
         public AccountService(IAccountRepository accountRepository, IDateTimeService dateTimeService)
         {
             _accountRepository = accountRepository;
             _dateTimeService = dateTimeService;
+            _encryptService = new MD5Wrapper();
         }
 
         public async Task<ServiceResultModel<string>> AddAsync(AccountDto dtoItem)
@@ -28,6 +31,13 @@ namespace KTA.Model.Services
             try
             {
                 var addItem = this.ConvertAccountEntity(dtoItem);
+
+                string md5Hash = this._encryptService.ToMD5Hash(dtoItem.Pwd);
+                string md16One = this._encryptService.Get16MD5One(dtoItem.Pwd);
+                string md16Two = this._encryptService.Get16MD5Two(dtoItem.Pwd);
+                string md32Two = this._encryptService.Get32MD5Two(dtoItem.Pwd);
+
+                addItem.Pwd = this._encryptService.EncryptData(addItem.Account, addItem.Pwd); // MD5 encryption
                 AccountEntity existItem = await this._accountRepository.GetSingleItemAsync(addItem);
                 if (existItem != null)
                 {
@@ -177,7 +187,8 @@ namespace KTA.Model.Services
                     return serviceResult;
                 }
 
-                if (!existItem.Pwd.Equals(dtoItem.Pwd))
+                string encryptedPwd = _encryptService.EncryptData(dtoItem.Account, dtoItem.Pwd); // MD5 encryption
+                if (!existItem.Pwd.Equals(encryptedPwd))
                 {
                     serviceResult.IsSuccess = false;
                     serviceResult.Message = $"Account {dtoItem.Account} login fail. Password Incorrect.";

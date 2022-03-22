@@ -14,6 +14,7 @@
     <ProjectReference Include="..\KTA.Model.Constants\KTA.Model.Constants.csproj" />
     <ProjectReference Include="..\KTA.Model.Entities\KTA.Model.Entities.csproj" />
     <ProjectReference Include="..\KTA.Model.Interface\KTA.Model.Interface.csproj" />
+    <ProjectReference Include="..\KTA.Model.Library\KTA.Model.Library.csproj" />
   </ItemGroup>
 
 </Project>

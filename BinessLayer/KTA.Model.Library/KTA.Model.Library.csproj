@@ -9,8 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\DataAccessLayer\KTA.Data.Entity\KTA.Data.Entity.csproj" />
-    <ProjectReference Include="..\KTA.Model.Entities\KTA.Model.Entities.csproj" />
+    <ProjectReference Include="..\KTA.Model.Interface\KTA.Model.Interface.csproj" />
   </ItemGroup>
 
 </Project>
