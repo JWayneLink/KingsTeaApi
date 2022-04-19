@@ -33,8 +33,29 @@ bld/
 [Ll]og/
 [Ll]ogs/
 
+# DataAccessLayer Build results ignore
 DataAccessLayer/KTA.Data.Entity/*.bin
 DataAccessLayer/KTA.Data.Entity/*.obj
+DataAccessLayer\KTA.Data.Repository/*.bin
+DataAccessLayer\KTA.Data.Repository/*.obj
+DataAccessLayer\KTA.Data.Schema/*.bin
+DataAccessLayer\KTA.Data.Schema/*.obj
+DataAccessLayer\KTA.Data.Service/*.bin
+DataAccessLayer\KTA.Data.Service/*.obj
+
+# Business Build results ignore
+BinessLayer/KTA.Model.Constants/*.bin
+BinessLayer/KTA.Model.Constants/*.obj
+BinessLayer/KTA.Model.Entities/*.bin
+BinessLayer/KTA.Model.Entities/*.obj
+BinessLayer/KTA.Model.Exception/*.bin
+BinessLayer/KTA.Model.Exception/*.obj
+BinessLayer/KTA.Model.Interface/*.bin
+BinessLayer/KTA.Model.Interface/*.obj
+BinessLayer/KTA.Model.Library/*.bin
+BinessLayer/KTA.Model.Library/*.obj
+BinessLayer/KTA.Model.Services/*.bin
+BinessLayer/KTA.Model.Services/*.obj
 
 # Visual Studio 2015/2017 cache/options directory
 .vs/
