@@ -9,12 +9,14 @@ using KTA.Data.Schema;
 
 namespace KTA.Data.Entity
 {
+    [Table("ACCOUNT", Schema = "dbo")]
     public class AccountEntity : BaseEntity
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Column(ACCOUNT.Columns.Id, Order = 0)]
         public int Id { get; set; }
 
+        [Key]
         [Column(ACCOUNT.Columns.Account, Order = 1)]
         [NotNullValidator()]
         [StringLengthValidator(1, 100)]

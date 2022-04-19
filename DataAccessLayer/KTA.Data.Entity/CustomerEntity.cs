@@ -2,6 +2,7 @@
 using Microsoft.Practices.EnterpriseLibrary.Validation.Validators;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
@@ -9,17 +10,19 @@ using System.Threading.Tasks;
 
 namespace KTA.Data.Entity
 {
+    [Table("CUSTOMER", Schema = "dbo")]
     public  class CustomerEntity : BaseEntity
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Column(CUSTOMER.Columns.Id, Order = 0)]
         public int Id { get; set; }
 
+        [Key]
         [Column(CUSTOMER.Columns.CustId, Order = 1)]
         [NotNullValidator()]
         [StringLengthValidator(1, 100)]
         public string CustId { get; set; }
-
+        
         [Column(CUSTOMER.Columns.Name, Order = 2)]
         [NotNullValidator()]
         [StringLengthValidator(1, 100)]

@@ -1,8 +1,11 @@
 use KTA
 
+
+
+
 /*
 --ACCOUNT TABLE
---create table ACCOUNT
+create table ACCOUNT
 (
 	Id int identity(1,1),
 	Account varchar(100) not null default '',
@@ -11,11 +14,12 @@ use KTA
 	Email varchar(100) not null default '',
 	Phone varchar(100)  not null default '',
 	Cdt datetime not null default getdate(),
-	Udt datetime not null default getdate()
+	Udt datetime not null default getdate(),
+	PRIMARY KEY (Account)
 )
 
 --PRODUCT TABLE
---create table PRODUCT
+create table PRODUCT
 (
 	Id int identity(1,1),
 	Pn varchar(100) not null default '',
@@ -26,7 +30,8 @@ use KTA
 	Ice varchar(100) not null default '',
 	Price money not null default 0,
 	Cdt datetime not null default getdate(),
-	Udt datetime not null default getdate()
+	Udt datetime not null default getdate(),
+	PRIMARY KEY (Pn)
 )
 
 
@@ -42,7 +47,10 @@ create table SALESORDER
 	Status varchar(100) not null default '',
 	Creator varchar(100) not null default  '',
 	Cdt datetime not null default getdate(),
-	Udt datetime not null default getdate()
+	Udt datetime not null default getdate(),
+	PRIMARY KEY (SO),
+	FOREIGN KEY (Pn) REFERENCES PRODUCT(Pn),
+	FOREIGN KEY (CustId) REFERENCES CUSTOMER(CustId)
 )
 
 --CUSTOMER TABLE
@@ -55,7 +63,8 @@ create table CUSTOMER
 	Address varchar(100) not null default '',
 	Phone varchar(100) not null default '',
 	Cdt datetime not null default getdate(),
-	Udt datetime not null default getdate()
+	Udt datetime not null default getdate(),
+	PRIMARY KEY (CustId)
 )
 
 */
@@ -125,4 +134,12 @@ truncate table ACCOUNT
 truncate table PRODUCT
 truncate table CUSTOMER
 truncate table SALESORDER
+*/
+
+
+/*
+drop table ACCOUNT
+drop table PRODUCT
+drop table CUSTOMER
+drop table SALESORDER
 */
