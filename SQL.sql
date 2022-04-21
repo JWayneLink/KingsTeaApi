@@ -48,7 +48,6 @@ create table SALESORDER
 	Creator varchar(100) not null default  '',
 	Cdt datetime not null default getdate(),
 	Udt datetime not null default getdate(),
-	PRIMARY KEY (SO),
 	FOREIGN KEY (Pn) REFERENCES PRODUCT(Pn),
 	FOREIGN KEY (CustId) REFERENCES CUSTOMER(CustId)
 )
@@ -75,7 +74,6 @@ select * from ACCOUNT (nolock)
 select * from PRODUCT (nolock)
 select * from SALESORDER (nolock)
 select * from CUSTOMER (nolock)
-
 
 
 
